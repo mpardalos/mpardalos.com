@@ -6,8 +6,7 @@ variables:
 stages:
   - build
 
-
-test-pages:
+pages:
   stage: build
   script:
   - pip install -r ci-requirements.txt
