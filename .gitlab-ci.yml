@@ -1,6 +1,10 @@
 image: python:3.7
 
+stages:
+  - build
+
 test-pages:
+  stage: build
   script:
   - virtualenv venv
   - source venv/bin/activate
