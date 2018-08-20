@@ -29,8 +29,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('gitlab', 'michalis_pardalos.gitlab.com'),
-          ('instagram', 'instagram.com/mpgrphoto'))
+SOCIAL = (('gitlab', 'https://michalis_pardalos.gitlab.com'),
+          ('instagram', 'https://instagram.com/mpgrphoto'))
 
 DEFAULT_PAGINATION = False
 
