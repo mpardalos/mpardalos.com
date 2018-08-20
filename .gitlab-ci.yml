@@ -6,8 +6,6 @@ stages:
 test-pages:
   stage: build
   script:
-  - virtualenv venv
-  - source venv/bin/activate
   - pip install -r ci-requirements.txt
   - make gitlab-pages
   artifacts:
