@@ -1,3 +1,3 @@
 [submodule "themes/pelican-hyde"]
 	path = themes/pelican-hyde
-	url = git@gitlab.com:michalis_pardalos/pelican-hyde-fork.git
+	url = https://gitlab.com/michalis_pardalos/pelican-hyde-fork.git
