@@ -6,6 +6,7 @@ variables:
 stages:
   - build
 
+
 test-pages:
   stage: build
   script:
@@ -14,3 +15,6 @@ test-pages:
   artifacts:
     paths:
     - public/
+  only:
+    refs:
+      - master
