@@ -10,4 +10,4 @@ test-pages:
     paths:
     - public/
   only: 
-    - master
+    - /master/
