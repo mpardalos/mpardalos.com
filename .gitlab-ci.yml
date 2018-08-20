@@ -2,9 +2,12 @@ image: python:3.7
 
 test-pages:
   script:
+  - virtualenv venv
+  - source venv/bin/activate
   - pip install -r ci-requirements.txt
   - make gitlab-pages
   artifacts:
     paths:
     - public/
-  only: master
+  only: 
+    - master
