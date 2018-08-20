@@ -6,6 +6,9 @@ AUTHOR = 'Michalis Pardalos'
 SITENAME = '_mike'
 SITEURL = ''
 
+THEME = './themes/pelican-hyde'
+PROFILE_IMAGE = 'profile.png'
+
 PATH = 'content'
 
 TIMEZONE = 'Europe/London'
@@ -26,8 +29,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('Gitlab', 'michalis_pardalos.gitlab.com'),
-          ('Another social link', '#'),)
+SOCIAL = (('gitlab', 'michalis_pardalos.gitlab.com'),
+          ('instagram', 'instagram.com/mpgrphoto'))
 
 DEFAULT_PAGINATION = False
 
