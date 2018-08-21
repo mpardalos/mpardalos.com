@@ -9,7 +9,8 @@ stages:
 pages:
   stage: build
   script:
-  - pip install -r ci-requirements.txt
+  - pip install pipenv
+  - pipenv lock --requirements | xargs pip install
   - make gitlab-pages
   artifacts:
     paths:
