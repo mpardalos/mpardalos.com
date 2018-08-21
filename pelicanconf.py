@@ -8,6 +8,9 @@ SITEURL = ''
 
 THEME = './themes/pelican-hyde'
 PROFILE_IMAGE = 'profile.png'
+MARKDOWN = {
+    'extensions': ['emdash']
+}
 
 PATH = 'content'
 
