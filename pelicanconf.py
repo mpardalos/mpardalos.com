@@ -18,6 +18,8 @@ TIMEZONE = 'Europe/London'
 
 DEFAULT_LANG = 'en'
 
+BIO = "Functional programming, programming languages and the ramblings of a madman"
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -28,11 +30,10 @@ AUTHOR_FEED_RSS = None
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+         ('Jinja2', 'http://jinja.pocoo.org/'))
 
 # Social widget
-SOCIAL = (('gitlab', 'https://michalis_pardalos.gitlab.com'),
+SOCIAL = (('gitlab', 'https://gitlab.com/michalis_pardalos'),
           ('instagram', 'https://instagram.com/mpgrphoto'))
 
 DEFAULT_PAGINATION = False
