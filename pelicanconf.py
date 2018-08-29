@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Michalis Pardalos'
 SITENAME = '_mike'
-SITEURL = ''
+SITEURL = 'mpardalos.xyz'
 
 THEME = './themes/pelican-hyde'
 PROFILE_IMAGE = 'profile.png'
