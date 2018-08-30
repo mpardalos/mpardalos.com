@@ -5,6 +5,9 @@ from __future__ import unicode_literals
 AUTHOR = 'Michalis Pardalos'
 SITENAME = '_mike'
 SITEURL = 'mpardalos.xyz'
+STATIC_PATHS = [
+    'favicon.ico'
+]
 
 THEME = './themes/pelican-hyde'
 PROFILE_IMAGE = 'profile.png'
