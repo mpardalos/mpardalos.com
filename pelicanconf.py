@@ -10,6 +10,8 @@ STATIC_PATHS = [
     'images/'
 ]
 
+DISQUS_SITENAME = 'mpardalos'
+
 THEME = './themes/pelican-hyde'
 PROFILE_IMAGE = 'profile.png'
 MARKDOWN = {
