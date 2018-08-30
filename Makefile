@@ -60,7 +60,4 @@ else
 	cd $(OUTPUTDIR) && $(PY) -m pelican.server 80 0.0.0.0
 endif
 
-gitlab-pages: html-strict
-	cp -r $(OUTPUTDIR) $(GITLAB_PAGESDIR)
-
 .PHONY: html help clean regenerate serve serve-global devserver stopserver gitlab-pages
