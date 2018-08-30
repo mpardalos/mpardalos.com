@@ -11,6 +11,7 @@ STATIC_PATHS = [
 ]
 
 DISQUS_SITENAME = 'mpardalos'
+GOOGLE_ANALYTICS = 'UA-124905673-1'
 
 THEME = './themes/pelican-hyde'
 PROFILE_IMAGE = 'profile.png'
