@@ -6,7 +6,8 @@ AUTHOR = 'Michalis Pardalos'
 SITENAME = '_mike'
 SITEURL = 'mpardalos.xyz'
 STATIC_PATHS = [
-    'favicon.ico'
+    'favicon.ico',
+    'images/'
 ]
 
 THEME = './themes/pelican-hyde'
