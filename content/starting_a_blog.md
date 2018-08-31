@@ -1,6 +1,6 @@
 ---
 title: Starting a blog
-date: 21-08-2018
+date: 2018-08-21
 ---
 
 Let's put something up as a first entry shall we?

@@ -1,6 +1,6 @@
 ---
 title: On static sites
-date: 01-09-2018
+date: 2018-09-01
 ---
 
 For the past few days I have been working almost exclusively on the site.
