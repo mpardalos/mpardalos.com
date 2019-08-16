@@ -6,25 +6,32 @@ body {
     max-width: 80%;
 }
 
-div#header {
+header {
     border-bottom: 2px solid black;
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-div#logo a {
+header #logo {
     color: black;
-    float: left;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-div#header #navigation {
+header nav {
     text-align: right;
 }
 
-div#header #navigation a {
+header nav a {
     color: black;
     font-size: 18px;
     font-weight: bold;
@@ -33,13 +40,16 @@ div#header #navigation a {
     text-transform: uppercase;
 }
 
-div#footer {
+footer {
     border-top: solid 2px black;
     color: #555;
     font-size: 12px;
     margin-top: 30px;
     padding: 12px 0px 12px 0px;
     text-align: right;
+
+    display: flex;
+    justify-content: space-around;
 }
 
 h1 {
@@ -50,8 +60,13 @@ h2 {
     font-size: 20px;
 }
 
-div.info {
+.info {
     color: #555;
     font-size: 14px;
     font-style: italic;
+}
+
+figure {
+    text-align: center;
+    margin: 5px 0;
 }
