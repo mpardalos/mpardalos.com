@@ -11,9 +11,12 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
-        route   idRoute
-        compile compressCssCompiler
+    match "css/*" $ compile compressCssCompiler
+    create ["style.css"] $ do
+        route idRoute
+        compile $ do
+            csses <- loadAll "css/*.css"
+            makeItem $ unlines $ map itemBody csses
 
     match "pages/about.md" $ do
         route   $ gsubRoute "pages/" (const "") `composeRoutes` setExtension "html"
