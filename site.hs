@@ -21,7 +21,7 @@ main = hakyll $ do
     match "pages/about.md" $ do
         route   $ gsubRoute "pages/" (const "") `composeRoutes` setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" baseCtx
             >>= relativizeUrls
 
     match "pages/cv.pdf" $ do
@@ -40,9 +40,9 @@ main = hakyll $ do
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Home"                `mappend`
-                    defaultContext
+                    listField "posts" postCtx (return posts) <>
+                    constField "title" "Home" <>
+                    baseCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -53,5 +53,10 @@ main = hakyll $ do
 
 
 --------------------------------------------------------------------------------
+baseCtx :: Context String
+baseCtx = defaultContext <> mconcat
+  [ constField "site-name" "_mike"
+  ]
+
 postCtx :: Context String
-postCtx = dateField "date" "%B %e, %Y" <> defaultContext
+postCtx = dateField "date" "%B %e, %Y" <> baseCtx
