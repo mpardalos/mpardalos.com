@@ -1,0 +1,142 @@
+---
+title: Customizable Datatypes
+date: 2019-08-18
+---
+
+This post is based on a post here:
+https://mazzo.li/posts/customizable-data-types.html I suggest reading that post
+first. It's a very short (but quite interesting) read. I will, however, give a
+quick summary here.
+
+I recently decided to use this pattern on my pet language project, Kima. I had a
+problem with the number of parameters on my AST type getting out of hand. I have
+to make multiple changes to it on the way from parsing to
+interpretation/compilation and so it needs to be heavily parameterized, nodes
+have to be enabled/disabled, etc. This pattern allows parameters to be added in
+an easy way without cluttering up type signatures and has helped clean up a lot
+of code.
+
+The code here will require the following GHC extensions:
+
+#+BEGIN_SRC haskell
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE TypeFamilies #-}
+#+END_SRC
+
+* Original article
+
+Essentially, the author describes a way to reduce the number of type parameters
+to a data type to a single "index" type parameter. They do that by introducing a
+single "index" type parameter as well as a set of type families which operate on
+that "index".
+
+So for example, this:
+
+#+BEGIN_SRC haskell
+data ExprBasic hasIf var where
+    IfBasic :: ExprBasic 'True var -> ExprBasic 'True var -> ExprBasic 'True var
+        -> ExprBasic 'True var
+    VarBasic :: var
+        -> ExprBasic hasIf var
+#+END_SRC
+
+becomes this:
+
+#+BEGIN_SRC haskell
+-- Full path to a name
+newtype QualName = QualName [String]
+
+data Parsed
+data Renamed
+
+type family Var idx :: * where
+    Var Parsed = String
+    Var Renamed = QualName
+
+type family HasIf idx :: Bool where
+    HasIf Parsed = 'True
+    HasIf Renamed = 'True
+-- Maybe some later stage desugars ifs into something else
+
+data Expr idx where
+  If :: HasIf idx ~ 'True => Expr idx -> Expr idx -> Expr idx -> Expr idx
+  Var :: Var idx -> Expr idx
+#+END_SRC
+
+* Benefits
+
+Obviously the second version is a lot more code but it does allow for some
+interesting differences from the first.
+
+1) If we add a parameter to ~Expr~ we don't have to change every signature where
+   that type appears.
+2) I would argue that it shows intent a lot better than the original. Compare
+
+   #+BEGIN_SRC haskell
+   f :: Expr Parsed -> Expr Renamed
+   #+END_SRC
+
+   to
+
+   #+BEGIN_SRC haskell
+   f :: Expr 'True String -> Expr 'True QualName
+   #+END_SRC 
+
+   You could type synonyms to make the second look more like the first, and it
+   would make the type signatures a lot cleaner but they won't show up in error
+   messages, where you will have to decypher what each type parameter means.
+
+3) With the closed type families used in the example, we can clearly enumerate
+   all the possible configurations our Expr type could be in. 
+
+* Using associated type families
+
+The way I use this pattern is a little different from the original is in how I
+use type families. The original article used closed type families. I have a few
+problems with this choice.
+
++ It doesn't allow adding more stages (although the author does suggest using
+  open type families which would fix this)
++ It doesn't give a compiler warning if a stage has some necessary variable
+  missing. This will give cryptic errors in the form ~Var t does not equal
+  String~, *at the call site* because of the way type families are evaluated.
++ It spreads out the definition of each data type across type family definitions
+  (This could also be fixed by using open type families)
+
+We can fix all of the above by grouping all the type families into a typeclass
+as associated types like so:
+
+#+BEGIN_SRC haskell
+class ExprIndex idx where
+  type Var idx :: *
+  type HasIf idx :: Bool
+
+instance ExprIndex Parsed where
+  type Var Parsed = String
+  type HasIf Parsed = True
+
+instance ExprIndex Renamed where
+  type Var Parsed = QualName
+  type HasIf Parsed = True
+#+END_SRC
+
+I find this much more pleasing to read and it also gives a warning if we miss a
+a definition for one of the indices.
+
+* Warning: Prefer concrete types!
+When I first started with this pattern, I tried using polymorphic functions, and
+only constraining the parameters that would be transformed. For example:
+#+BEGIN_SRC haskell
+rename
+  :: (Var idx2 ~ QualName, HasIf idx1 ~ HasIf idx2)
+  => Expr idx1 -> Expr idx2
+rename expr = ...
+#+END_SRC
+
+This style works ok for traversals and other simple functions that have no
+intermediate stages, but in more complicated transformations type inference can
+be an issue. There will very often be errors involving ambiguous type variables
+or unresolved type families. Therefore, I suggest leaving the polymorphic types
+for the functions that will be widely used throughout your application (like
+traversals) and prefering monomorphic types wherever possible elsewhere.
