@@ -21,7 +21,7 @@
         <article>
             <h1 class="page-title">Customizable Datatypes</h1>
 
-            Posted on <time>August 18, 2019</time>
+            Posted on <time>August 23, 2019</time>
 
 <p>This post is based on a post here: <a href="https://mazzo.li/posts/customizable-data-types.html" class="uri">https://mazzo.li/posts/customizable-data-types.html</a> I suggest reading that post first. It’s a very short (but quite interesting) read. I will, however, give a quick summary here.</p>
 <p>I recently decided to use this pattern on my pet language project, Kima. I had a problem with the number of parameters on my AST type getting out of hand. I have to make multiple changes to it on the way from parsing to interpretation/compilation and so it needs to be heavily parameterized, nodes have to be enabled/disabled, etc. This pattern allows parameters to be added in an easy way without cluttering up type signatures and has helped clean up a lot of code.</p>
