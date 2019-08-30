@@ -3,6 +3,11 @@
 import           Data.Monoid (mappend)
 import           Hakyll
 
+siteName        = "_mike"
+siteDescription = "Thoughts on haskell, programming, and whatever else comes to mind"
+authorName      = "Michail Pardalos"
+authorEmail     = "mpardalos@gmail.com"
+siteUrl         = "https://mpardalos.xyz"
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -32,8 +37,19 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+
+    create ["atom.xml"] $ do
+        route idRoute
+        compile $ do
+            let feedCtx = postCtx <> bodyField "description"
+
+            allPosts <- loadAllSnapshots "posts/*" "content"
+            recentPosts <- take 10 <$> recentFirst allPosts
+
+            renderAtom feedConfiguration feedCtx recentPosts
 
     match "index.html" $ do
         route idRoute
@@ -55,8 +71,17 @@ main = hakyll $ do
 --------------------------------------------------------------------------------
 baseCtx :: Context String
 baseCtx = defaultContext <> mconcat
-  [ constField "site-name" "_mike"
+  [ constField "site-name" siteName
   ]
 
 postCtx :: Context String
 postCtx = dateField "date" "%B %e, %Y" <> baseCtx
+
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration 
+    { feedTitle       = siteName
+    , feedDescription = siteDescription
+    , feedAuthorName  = authorName
+    , feedAuthorEmail = authorEmail
+    , feedRoot        = siteUrl
+    }
