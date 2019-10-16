@@ -1,19 +1,24 @@
+:root {
+    --main-color: pink;
+    --main-color-darker: hotpink;
+}
+
 body {
     color: black;
     font-size: 16pt;
     margin: 0px auto;
-    width: 60em;
-    max-width: 80%;
+    width: 100%;
 }
 
 header {
-    border-bottom: 2px solid black;
     margin-bottom: 30px;
-    padding: 12px 0px 12px 0px;
+    padding: 12px 20px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background-color: var(--main-color);
 }
 
 header #logo {
@@ -27,6 +32,13 @@ header #logo {
     align-items: center;
 }
 
+header #logo img {
+    padding: 5px;
+    margin-right: 10px;
+    background-color: var(--main-color-darker);
+    border-radius: 50%;
+}
+
 header nav {
     text-align: right;
 }
@@ -38,6 +50,13 @@ header nav a {
     margin-left: 12px;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+article {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 }
 
 footer {
