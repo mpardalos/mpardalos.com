@@ -5,7 +5,6 @@
 
 body {
     color: black;
-    font-size: 16pt;
     margin: 0px auto;
     width: 100%;
 }
@@ -23,7 +22,7 @@ header {
 
 header #logo {
     color: black;
-    font-size: 18pt;
+    font-size: 1.2em;
     font-weight: bold;
     text-decoration: none;
 
@@ -45,7 +44,7 @@ header nav {
 
 header nav a {
     color: black;
-    font-size: 14pt;
+    font-size: 1.1em;
     font-weight: bold;
     margin-left: 12px;
     text-decoration: none;
@@ -63,7 +62,7 @@ footer {
     border-top: solid 2px black;
     color: #555;
 
-    font-size: 12pt;
+    font-size: 0.8em;
     margin-top: 30px;
     padding: 12px 20px;
     text-align: center;
@@ -74,11 +73,11 @@ footer {
 }
 
 h1.page-title {
-    font-size: 24pt;
+    font-size: 2em;
 }
 
 h1:not(.page-title) {
-    font-size: 20pt;
+    font-size: 1.7em;
     border-bottom: 2px solid black;
     padding-left: 10px;
 }
@@ -91,7 +90,6 @@ pre.sourceCode {
 
 .info {
     color: #555;
-    font-size: 14pt;
     font-style: italic;
 }
 
