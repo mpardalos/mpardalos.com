@@ -1,7 +1,9 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
-import           Hakyll
+import            Hakyll
+import            Hakyll.Web.Sass (sassCompilerWith)
+import            Text.Sass.Options
+import            Data.Functor ((<&>))
 
 siteName        = "_mike"
 siteDescription = "Thoughts on haskell, programming, and whatever else comes to mind"
@@ -16,12 +18,10 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ compile compressCssCompiler
-    create ["style.css"] $ do
-        route idRoute
-        compile $ do
-            csses <- loadAll "css/*.css"
-            makeItem $ unlines $ map itemBody csses
+    match "css/style.scss" $ do
+      route (constRoute "style.css")
+      compile (sassCompilerWith defaultSassOptions
+               { sassOutputStyle = SassStyleCompressed })
 
     match "pages/about.md" $ do
         route   $ gsubRoute "pages/" (const "") `composeRoutes` setExtension "html"
