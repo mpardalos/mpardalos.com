@@ -1,0 +1,20 @@
+baseURL = "https://mpardalos.xyz"
+languageCode = "en-us"
+title = "Michalis Pardalos"
+
+theme = "hyde"
+
+[params]
+    description = """
+    Imperial College student, functional programming enthusiast. Interested in
+    all areas of computer science, but (for now) primarily programming language
+    theory
+    """
+
+[Menus]
+    main = [
+        { Name = "Github", URL = "https://github.com/mpardalos" },
+        { Name = "About me", URL = "/about.html" },
+        { Name = "CV", URL = "/cv.pdf" },
+        # { Name = "Gitlab", URL = "https://gitlab.com/michail_pardalos" }
+    ]
