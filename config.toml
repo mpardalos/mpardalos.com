@@ -13,9 +13,14 @@ theme = "hyde-hyde"
 
     themeColor = "theme-base-09"
 
+[params.social]
+    github = "mpardalos"
+    gitlab = "michalis_pardalos"
+    linkedin = "mpardalos"
+    instagram = "mpgrphoto"
+
 [Menus]
     main = [
-        { Name = "Github", URL = "https://github.com/mpardalos" },
         { Name = "About me", URL = "/about.html" },
         { Name = "CV", URL = "/cv.pdf" },
         # { Name = "Gitlab", URL = "https://gitlab.com/michail_pardalos" }
