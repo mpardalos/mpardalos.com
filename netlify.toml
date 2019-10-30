@@ -1,6 +1,6 @@
 [build]
 publish = "public"
-command = "hugo --gc --minify"
+command = "hugo --minify"
 
 [context.deploy-preview]
-command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+command = "hugo --minify --buildFuture -b $DEPLOY_PRIME_URL"
