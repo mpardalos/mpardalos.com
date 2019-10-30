@@ -2,7 +2,7 @@ baseURL = "https://mpardalos.xyz/"
 languageCode = "en-us"
 title = "Michalis Pardalos"
 
-theme = "hyde"
+theme = "hyde-hyde"
 
 [params]
     description = """
@@ -10,6 +10,8 @@ theme = "hyde"
     all areas of computer science, but (for now) primarily programming language
     theory
     """
+
+    themeColor = "theme-base-09"
 
 [Menus]
     main = [
