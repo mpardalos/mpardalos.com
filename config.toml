@@ -22,6 +22,7 @@ theme = "hyde-hyde"
 [Menus]
     main = [
         { Name = "About me", URL = "/about.html" },
+        { Name = "Portfolio", URL = "/portfolio" },
         { Name = "CV", URL = "/cv.pdf" },
         # { Name = "Gitlab", URL = "https://gitlab.com/michail_pardalos" }
     ]
