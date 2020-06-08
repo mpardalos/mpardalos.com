@@ -3,7 +3,6 @@ title: The Kima Programming language
 description: A programming language with support for algebraic effects
 link: https://gitlab.com/michalis_pardalos/kima
 date: 2018-08-01
-featured: true
 ---
 
 **Kima** is a programming language I am currently working on. Its main goal is
