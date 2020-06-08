@@ -2,6 +2,15 @@
     --color-text-light: #9a9a9a;
 }
 
+.theme-base-08 {--color-primary: #ac4142;}
+.theme-base-09 {--color-primary: #d28445;}
+.theme-base-0a {--color-primary: #f4bf75;}
+.theme-base-0b {--color-primary: #90a959;}
+.theme-base-0c {--color-primary: #75b5aa;}
+.theme-base-0d {--color-primary: #6a9fb5;}
+.theme-base-0e {--color-primary: #aa759f;}
+.theme-base-0f {--color-primary: #8f5536;}
+
 img[src=""] { display:none }
 
 /* Theme override */
