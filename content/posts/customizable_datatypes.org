@@ -1,7 +1,5 @@
----
-title: Customizable Datatypes
-date: 2019-08-23
----
+#+TITLE: Customizable Datatypes
+#+date: 2019-08-23
 
 This post is based on a post here:
 https://mazzo.li/posts/customizable-data-types.html I suggest reading that post
