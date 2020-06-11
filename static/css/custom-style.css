@@ -37,22 +37,32 @@ img[src=""] { display:none }
     border-bottom: 2px solid var(--color-primary);
 }
 
+.portfolio-entry {
+    padding-left: 1rem;
+    border-left: 2px solid var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.portfolio-entry-title {
+    vertical-align: middle;
+    margin: 0;
+}
+
+.portfolio-entry-title:hover {
+    color: var(--color-primary);
+    filter: brightness(70%);
+}
+
 .collapsible-label {
     display: block;
     cursor: pointer;
-    padding-bottom: 2px;
 }
 
-.collapsible-label:hover {
-    padding-bottom: 0px;
-    border-bottom: 2px solid var(--color-primary);
-}
-
-input[type="checkbox"].collapsible-toggle {
+.collapsible-toggle {
     display: none;
 }
 
-input[type="checkbox"].collapsible-toggle + .collapsible-text {
+.collapsible-toggle ~ .collapsible-text {
     opacity: 0;
     max-height: 0px;
     overflow: hidden;
@@ -60,7 +70,7 @@ input[type="checkbox"].collapsible-toggle + .collapsible-text {
     transition: 0.2s ease-in-out;
 }
 
-input[type="checkbox"].collapsible-toggle:checked + .collapsible-text {
+.collapsible-toggle:checked ~ .collapsible-text {
     opacity: 1;
-    max-height: 15rem;
+    max-height: 40rem;
 }

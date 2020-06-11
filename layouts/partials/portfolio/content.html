@@ -1,24 +1,24 @@
 <h1 class="section__title portfolio-title">{{ .Title | default "Projects" }}</h1>
-<div class="portfolio__content">
-  {{ range .Data.Pages.ByDate.Reverse }}
+{{ range .Data.Pages.ByDate.Reverse }}
   <section class="portfolio-entry">
-    <label class="collapsible-label" for="{{ .File.UniqueID }}-checkbox">
-      <h2 class="portfolio-entry-title">
-        {{ .Title }}
-      </h2>
-    </label>
     <input
       class="collapsible-toggle"
       id="{{ .File.UniqueID }}-checkbox"
       type="checkbox"/>
+    <label
+      class="collapsible-label"
+      for="{{ .File.UniqueID }}-checkbox">
+      <h2 class="portfolio-entry-title">
+        {{ .Title }}
+      </h2>
+    </label>
     <div class="portfolio-entry-details collapsible-text">
       <span class="portfolio-entry-text">
         {{ .Content }}
       </span>
       {{ if .Params.link }}
-        <a href="{{ .Params.link }}" >link</a>
+      <a href="{{ .Params.link }}" >link</a>
       {{ end }}
     </div>
   </section>
-  {{ end }}
-</div>
+{{ end }}
