@@ -12,12 +12,10 @@
         {{ .Title }}
       </h2>
     </label>
-    <div class="portfolio-entry-details collapsible-text">
-      <span class="portfolio-entry-text">
-        {{ .Content }}
-      </span>
+    <div class="portfolio-entry-text collapsible-text">
+      {{ .Content }}
       {{ if .Params.link }}
-      <a href="{{ .Params.link }}" >link</a>
+      <a href="{{ .Params.link }}" class="portfolio-entry-link">link</a>
       {{ end }}
     </div>
   </section>
