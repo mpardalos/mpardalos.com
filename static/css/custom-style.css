@@ -26,3 +26,33 @@ img[src=""] { display:none }
 .external-post-marker {
     color: var(--color-text-light);
 }
+
+.portfolio-title {
+    color: var(--color-main);
+    text-align: center;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.collapsible-label {
+    display: block;
+    cursor: pointer;
+    padding-bottom: 2px;
+}
+
+.collapsible-label:hover {
+    padding-bottom: 0px;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+input[type="checkbox"].collapsible-toggle {
+    display: none;
+}
+
+input[type="checkbox"].collapsible-toggle + .collapsible-text {
+    max-height: 0px;
+    overflow: hidden;
+}
+
+input[type="checkbox"].collapsible-toggle:checked + .collapsible-text {
+    max-height: 100vh;
+}
