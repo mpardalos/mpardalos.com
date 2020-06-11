@@ -2,6 +2,10 @@
     --color-text-light: #9a9a9a;
 }
 
+/* Fixes */
+h2 {line-height: 1;}
+/*********/
+
 .theme-base-08 {--color-primary: #ac4142;}
 .theme-base-09 {--color-primary: #d28445;}
 .theme-base-0a {--color-primary: #f4bf75;}
