@@ -21,6 +21,14 @@ img[src=""] { display:none }
 .item__date { margin-top: 0px; }
 /* Theme override */
 
+/* Sidebar */
+.sidebar li {width: 100%;}
+.sidebar li a {
+    display: block;
+    width: 100%;
+}
+/***********/
+
 .post-list-item-details {
     display: flex;
     justify-content: space-between;
