@@ -49,10 +49,14 @@ input[type="checkbox"].collapsible-toggle {
 }
 
 input[type="checkbox"].collapsible-toggle + .collapsible-text {
+    opacity: 0;
     max-height: 0px;
     overflow: hidden;
+
+    transition: 0.2s ease-in-out;
 }
 
 input[type="checkbox"].collapsible-toggle:checked + .collapsible-text {
-    max-height: 100vh;
+    opacity: 1;
+    max-height: 15rem;
 }
