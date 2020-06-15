@@ -56,15 +56,12 @@ img[src=""] { display:none }
     margin: 0;
 }
 
-details > summary::marker {
-    content: "";
-}
-
 .portfolio-entry:hover .portfolio-entry-title {
     color: var(--color-primary);
     filter: brightness(70%);
 }
 
+.portfolio-entry > summary::marker {content: "";}
 .portfolio-entry-title {
     transition: 0.3s;
     cursor: pointer;
