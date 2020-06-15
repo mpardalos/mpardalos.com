@@ -19,7 +19,7 @@ img[src=""] { display:none }
 
 /* Theme override */
 .item__date { margin-top: 0px; }
-/* Theme override */
+/******************/
 
 /* Sidebar */
 .sidebar li {width: 100%;}
@@ -56,11 +56,7 @@ img[src=""] { display:none }
     margin: 0;
 }
 
-.portfolio-entry:hover .portfolio-entry-title {
-    color: var(--color-primary);
-    filter: brightness(70%);
-}
-
+/* Portfolio */
 .portfolio-entry > summary::marker {content: "";}
 .portfolio-entry-title {
     transition: 0.3s;
@@ -70,9 +66,12 @@ img[src=""] { display:none }
 .portfolio-entry[open] .portfolio-entry-title {
     transform: translateX(1rem);
 }
-
+.portfolio-entry-title:hover {
+    color: var(--color-primary);
+    filter: brightness(70%);
+}
 
 .portfolio-entry-link {
     font-weight: bold;
 }
-
+/*************/
