@@ -1,5 +1,5 @@
 <h1 class="section__title portfolio-title">{{ .Title | default "Projects" }}</h1>
-{{ range .Data.Pages.ByDate.Reverse }}
+{{ range .Pages }}
 <details class="portfolio-entry">
   <summary>
     <h2 class="portfolio-entry-title">

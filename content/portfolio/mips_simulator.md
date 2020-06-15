@@ -2,7 +2,7 @@
 title: MIPS Simulator
 description: A simulator for the MIPS-1 architecture
 link: https://gitlab.com/michalis_pardalos/MIPS-Simulator
-date: 2018-10-01
+weight: 5
 ---
 
 A simulator and testbench written as a university project. Simulates almost all
