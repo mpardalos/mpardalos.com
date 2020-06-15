@@ -56,33 +56,26 @@ img[src=""] { display:none }
     margin: 0;
 }
 
-.portfolio-entry-title:hover {
+details > summary::marker {
+    content: "";
+}
+
+.portfolio-entry:hover .portfolio-entry-title {
     color: var(--color-primary);
     filter: brightness(70%);
 }
+
+.portfolio-entry-title {
+    transition: 0.3s;
+    cursor: pointer;
+    margin-top: 0px;
+}
+.portfolio-entry[open] .portfolio-entry-title {
+    transform: translateX(1rem);
+}
+
 
 .portfolio-entry-link {
     font-weight: bold;
 }
 
-.collapsible-label {
-    display: block;
-    cursor: pointer;
-}
-
-.collapsible-toggle {
-    display: none;
-}
-
-.collapsible-toggle ~ .collapsible-text {
-    opacity: 0;
-    max-height: 0px;
-    overflow: hidden;
-
-    transition: 0.2s ease-in-out;
-}
-
-.collapsible-toggle:checked ~ .collapsible-text {
-    opacity: 1;
-    max-height: 40rem;
-}
