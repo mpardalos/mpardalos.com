@@ -22,31 +22,44 @@ img[src=""] { display:none }
 /******************/
 
 /* Sidebar */
-.site__description {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.sidebar-nav li {width: 100%;}
-.sidebar-nav a {
-    display: block;
-    width: 100%;
+@mixin sidebar-hover {
     transition: 0.1s linear;
-}
-
-.sidebar-nav a:hover {
-    color: white;
-    background-color: #0003
+    &:hover {
+        color: white;
+        background-color: #0003
+    }
 }
 
 .sidebar {
     padding-left: 0;
     padding-right: 0;
-}
-.sidebar > .container {
-    padding-left: 0;
-    padding-right: 0;
+
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .site__title a {
+        display: block;
+        line-height: 1;
+        @include sidebar-hover;
+    }
+
+    .site__description {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .sidebar-nav {
+        li {width: 100%;}
+
+        a {
+            display: block;
+            width: 100%;
+            @include sidebar-hover;
+        }
+    }
 }
 /***********/
 
@@ -67,32 +80,28 @@ img[src=""] { display:none }
 }
 
 .portfolio-entry {
+    > summary::marker {content: "";}
+
     padding-left: 1rem;
     border-left: 2px solid var(--color-primary);
     margin-bottom: 1rem;
-}
 
-.portfolio-entry-title {
-    vertical-align: middle;
-    margin: 0;
-}
+    .portfolio-entry-link { font-weight: bold; }
 
-/* Portfolio */
-.portfolio-entry > summary::marker {content: "";}
-.portfolio-entry-title {
-    transition: 0.3s;
-    cursor: pointer;
-    margin-top: 0px;
-}
-.portfolio-entry[open] .portfolio-entry-title {
-    transform: translateX(1rem);
-}
-.portfolio-entry-title:hover {
-    color: var(--color-primary);
-    filter: brightness(70%);
-}
+    .portfolio-entry-title {
+        vertical-align: middle;
+        margin: 0;
+        transition: 0.3s;
+        cursor: pointer;
+        margin-top: 0px;
 
-.portfolio-entry-link {
-    font-weight: bold;
+        &:hover {
+            color: var(--color-primary);
+            filter: brightness(70%);
+        }
+    }
+
+    &[open] .portfolio-entry-title {
+        transform: translateX(1rem);
+    }
 }
-/*************/

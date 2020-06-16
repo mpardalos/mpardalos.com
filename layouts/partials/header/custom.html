@@ -1,1 +1,3 @@
-<link rel="stylesheet" href="/css/custom-style.css" type="text/css"/>
+{{ $options := (dict "outputStyle" "compressed" "enableSourceMap" true) }}
+{{ $style := resources.Get "custom-style.scss" | toCSS $options | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
