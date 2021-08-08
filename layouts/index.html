@@ -5,49 +5,9 @@
 {{ end }}
 
 {{ define "content" }}
-  <div class="post-list">
-    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections) }}
-    {{ range $paginator.Pages }}
-      {{ if .Draft }}
-        {{ .Scratch.Set "draftPage" true }}
-      {{ else }}
-        {{ .Scratch.Set "draftPage" false }}
-    {{ end }}
-
-      <div class="post-list__item">
-        <span class="item__title--big">
-          <a href="{{ or .Params.external_link .RelPermalink }}" {{if .Scratch.Get "draftPage" }}class="draft"{{end}}>{{ .Title }}</a>
-        </span>
-        <div class="post-list-item-details">
-          <span class="item__date">
-            {{ .Date.Format (.Site.Params.dateformat | default "Jan 02, 2006") }}
-          </span>
-          {{ if .Params.external_link }}
-            <span class="external-post-marker">External Post</span>
-          {{ end }}
-        </div>
-        <span {{if .Scratch.Get "draftPage" }}class="draft"{{end}}>
-
-        {{ if .Description }}
-          {{ .Description }}
-        {{ else }}
-          {{ .Summary }}
-        {{ end }}
-        </span>
-        {{ if .Truncated }}
-          ... <a class="read-more-symbol" href="{{ .RelPermalink }}">➦</a>
-        {{ end }}
-        </div>
-        {{ .Scratch.Delete "draftPage" }}
-     {{ end }}
-  </div>
-  {{ partial "pagination.html" . }}
+  {{ partial "portfolio/content.html" (.Site.GetPage "/portfolio") }}
 {{ end }}
 
 {{ define "footer" }}
-  {{ if .Site.GoogleAnalytics }}
-    <!-- Google Analytics -->
-    {{ template "_internal/google_analytics_async.html" . }}
-  {{ end }}
-  {{ partial "footer/font-awesome-js.html" . }}
+  {{ partial "page-list/footer.html" . }}
 {{ end }}
