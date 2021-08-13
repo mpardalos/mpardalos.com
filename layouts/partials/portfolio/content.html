@@ -1,8 +1,6 @@
 <h1 class="section__title portfolio-title">{{ .Title | default "Projects" }}</h1>
 {{ range .Pages }}
-<details
-    class="portfolio-entry"
-    {{ if eq .Weight 1 }} open {{ end }}>
+<details class="portfolio-entry" open>
   <summary>
     <h2 class="portfolio-entry-title">
       {{ .Title }}

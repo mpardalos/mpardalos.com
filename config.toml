@@ -23,6 +23,7 @@ theme = "hyde-hyde"
     main = [
         { Name = "About me", URL = "/about" },
         { Name = "Blog", URL = "/blog" },
+        { Name = "Experience/Projects", URL = "/" },
         { Name = "CV", URL = "/cv.pdf" },
         # { Name = "Gitlab", URL = "https://gitlab.com/michail_pardalos" }
     ]
