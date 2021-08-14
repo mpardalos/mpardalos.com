@@ -1,6 +1,6 @@
+<h1>{{ .Title }}</h1>
 <div class="post-list">
-  {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" site.Params.mainSections) }}
-  {{ range $paginator.Pages }}
+  {{ range .Pages }}
   {{ if .Draft }}
     {{ .Scratch.Set "draftPage" true }}
   {{ else }}

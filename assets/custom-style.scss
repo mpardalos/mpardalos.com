@@ -21,6 +21,12 @@ img[src=""] { display:none }
 .item__date { margin-top: 0px; }
 /******************/
 
+h1 {
+    color: var(--color-main);
+    text-align: center;
+    border-bottom: 2px solid var(--color-primary);
+}
+
 /* Sidebar */
 @mixin sidebar-hover {
     transition: 0.1s linear;
@@ -71,12 +77,6 @@ img[src=""] { display:none }
 
 .external-post-marker {
     color: var(--color-text-light);
-}
-
-.portfolio-title {
-    color: var(--color-main);
-    text-align: center;
-    border-bottom: 2px solid var(--color-primary);
 }
 
 .portfolio-entry {
