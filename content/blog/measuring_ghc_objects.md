@@ -1,7 +1,6 @@
 ---
-title: Measuring memory usage of Haskell values
+title: Measuring memory usage of Haskell values — a dive into GHC
 date: 2020-08-04
-draft: true
 ---
 
 As part of my Google Summer of Code project to add instrumentation to ghcide, I needed to measure the size of Haskell values in memory. After getting blocked by a bug in a GHC primop I fell down a rabbit hole of learning about GHC's memory layout, C-- and making my first contribution to GHC. In this post I want to describe that journey and hopefully encourage some more people to consider contributing to GHC. I will be explaining the concepts that were new to me, however some will still be unfamiliar to some people. I encourage you to look for them in the excellent [GHC wiki](https://gitlab.haskell.org/ghc/ghc/-/wikis/home). Ctrl-f in the [table of contents](https://gitlab.haskell.org/ghc/ghc/-/wikis/index) will most likely get you a good explanation.
