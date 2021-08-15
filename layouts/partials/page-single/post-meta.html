@@ -33,8 +33,11 @@
       {{ end }}
       </div>
     {{ end }}
-    <div class="post-meta-element">
-      <i class="fas fa-clock"></i> {{ .ReadingTime }} min read
-    </div>
+
+    {{ if (not (.Params.Get "hide_time_estimate")) }}
+      <div class="post-meta-element">
+        <i class="fas fa-clock"></i> {{ .ReadingTime }} min read
+      </div>
+    {{ end }}
 </div>
 {{ end }}
