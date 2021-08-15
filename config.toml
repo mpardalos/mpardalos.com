@@ -15,7 +15,6 @@ theme = "hyde-hyde"
 
 [params.social]
     github = "mpardalos"
-    gitlab = "michalis_pardalos"
     linkedin = "mpardalos"
     instagram = "mpgrphoto"
 
