@@ -41,9 +41,20 @@ h1 {
     padding-left: 0;
     padding-right: 0;
 
-    .container {
-        padding-left: 0;
-        padding-right: 0;
+    display: flex;
+    flex-flow: column;
+
+    .collapsible-menu {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: column;
+    }
+
+    .menu-content {
+        flex-grow: 1;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
     }
 
     .site__title a {
@@ -53,9 +64,13 @@ h1 {
     }
 
     .site__description {
+        display: none;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
+
+        font-weight: unset;
+        font-size: 1.1rem;
     }
 
     .sidebar-nav {
