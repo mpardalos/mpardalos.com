@@ -5,6 +5,8 @@ hide_time_estimate: true
 
 Hey there. I'm Michalis, hope you like my site!
 
+{{< fig src="/images/myself.png" class="my-face" width=300em >}}
+
 I'm a recent graduate of *Electronic and Information Engineering* from *Imperial
 College London*. This degree has allowed me to develop skills in hardware
 design, software engineering and systems architecture. I have also acquired
