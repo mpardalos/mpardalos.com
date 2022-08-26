@@ -5,12 +5,6 @@ title = "Michalis Pardalos"
 theme = "hyde-hyde"
 
 [params]
-    description = """
-    Imperial College student, functional programming enthusiast. Interested in
-    all areas of computer science, but (for now) primarily programming language
-    theory
-    """
-
     themeColor = "theme-base-09"
 
 [params.social]
