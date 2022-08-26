@@ -21,6 +21,7 @@ theme = "hyde-hyde"
 [Menus]
     main = [
         { Name = "About me", URL = "/about" },
+        { Name = "Current", URL = "/current" },
         { Name = "Blog", URL = "/blog" },
         { Name = "Experience/Projects", URL = "/portfolio" },
         { Name = "CV", URL = "/cv.pdf" },
