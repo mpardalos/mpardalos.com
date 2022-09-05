@@ -1,0 +1,28 @@
+header {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-content: space-around;
+    justify-content: space-between;
+}
+
+#page-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.page-link {
+    margin-bottom: 2px;
+    display: list-item;
+}
+
+.draft:before {
+    content: "DRAFT"
+    background: red;
+}
+
+.date:before {
+    content: "Date: "
+}

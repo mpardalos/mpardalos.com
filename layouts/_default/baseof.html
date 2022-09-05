@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css" type="text/css" media="screen" />
+
+        {{ block "head" . }}{{ end }}
+    </head>
+    <body>
+        <header>
+            <span id="my-name">Michalis Pardalos</span>
+            <nav>
+                <a href="/blog">Blog</a>
+                <a href="/about">About</a>
+                <a href="/current">Current</a>
+            </nav>
+        </header>
+        {{ block "title" . }}
+            <div id="page-title">{{.Title}}</div>
+        {{ end }}
+        {{ block "body" . }}{{ end }}
+    </body>
+</html>
