@@ -26,20 +26,6 @@ body {
     color: black;
 }
 
-.page-list {
-    display: grid;
-    grid-template-columns: "minmax auto";
-    grid-template-rows: "repeat(1em)";
-}
-
-.page-list .date {
-    .grid-column: 1;
-}
-
-.page-list .page-link {
-    .grid-column: 2;
-}
-
 .page-external-link {
     display: block;
     font-size: 1.2em;
@@ -62,12 +48,22 @@ body {
     width: 100%;
 }
 
-.page-link {
-    margin-bottom: 2px;
-    display: list-item;
-}
-
 .draft:before {
     content: "DRAFT"
     background: red;
+}
+
+.page-list {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+.page-list .date {
+    padding-right: 10px;
+    text-align: right;
+    .grid-column: 1 / span 1;
+}
+
+.page-list .page-link {
+    .grid-column: 2 / span 1;
 }
