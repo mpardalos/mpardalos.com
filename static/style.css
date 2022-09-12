@@ -53,6 +53,20 @@ body {
     background: red;
 }
 
+.about-blurb {
+    text-align: justified;
+}
+
+.home-page-section {
+    border-top: 2px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.home-page-section:last-child {
+    border-bottom: 2px solid black;
+}
+
 .page-list {
     display: grid;
     grid-template-columns: max-content auto;

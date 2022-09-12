@@ -7,8 +7,15 @@
 {{ end}}
 
 {{ define "body" }}
-  <span class="section-heading">Blog</span>
+<section class="home-page-section about-blurb">
+  <p>
+    Hi there! I'm Michalis. This is my personal website. I am a PhD student,
+    working at the intersection of formal methods and hardware design.
+  </p>
+</section>
+<section class="home-page-section">
   {{ partial "list.html" (.Site.GetPage "/blog") }}
+</section>
 {{ end }}
 
 {{ define "footer" }}
