@@ -42,9 +42,9 @@ body {
 }
 
 .external-marker {
-    border: 1px solid black;
-    border-radius: 10px;
     padding: 2px;
+    font-weight: bold;
+    font-variant: all-small-caps;
 }
 
 #page-title {
