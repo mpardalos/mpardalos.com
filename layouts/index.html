@@ -1,7 +1,3 @@
-{{ define "header" }}
-  {{ partial "header.html" . }}
-{{ end }}
-
 {{ define "body" }}
 <div class="home-content">
   <section class="about-blurb">
@@ -24,8 +20,4 @@
     {{ partial "list.html" (.Site.GetPage "/blog") }}
   </section>
 </div>
-{{ end }}
-
-{{ define "footer" }}
-  {{ partial "page-list/footer.html" . }}
 {{ end }}
