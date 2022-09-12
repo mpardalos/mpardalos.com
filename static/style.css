@@ -7,9 +7,14 @@ header {
 
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 
     font-family: monospace;
     font-size: 2rem;
+}
+
+nav {
+    font-size: 1.4rem;
 }
 
 body {
