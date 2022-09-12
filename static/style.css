@@ -17,6 +17,14 @@ body {
     font-family: helvetica, sans-serif;
 }
 
+/* Prevent text from touching sides of screen on mobile */
+@media screen and (max-width: 840px) {
+    body {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
 .section-heading {
     font-size: 2em;
     margin-bottom: 20px;
