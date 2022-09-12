@@ -1,3 +1,5 @@
+html { font-size: 100%; }
+
 header {
     border-bottom: 1px solid black;
     padding-bottom: 5px;
@@ -7,7 +9,7 @@ header {
     justify-content: space-between;
 
     font-family: monospace;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 body {
@@ -15,6 +17,7 @@ body {
     margin: auto;
     background-color: rgb(230, 230, 230);
     font-family: helvetica, sans-serif;
+    font-size: 1.2rem;
 }
 
 /* Prevent text from touching sides of screen on mobile */
@@ -26,7 +29,7 @@ body {
 }
 
 .section-heading {
-    font-size: 2em;
+    font-size: 2rem;
     margin-bottom: 20px;
     display: block;
 }
@@ -38,7 +41,7 @@ body {
 
 .page-external-link {
     display: block;
-    font-size: 1.2em;
+    font-size: 1.5rem;
 }
 
 .external-marker {
@@ -48,7 +51,7 @@ body {
 }
 
 #page-title {
-    font-size: 3em;
+    font-size: 3rem;
     margin-top: 20px;
     display: block;
     margin-bottom: 20px;
