@@ -74,17 +74,7 @@ body {
     border-bottom: 2px solid black;
 }
 
-.page-list {
-    display: grid;
-    grid-template-columns: max-content auto;
-}
-
-.page-list .date {
-    padding-right: 10px;
-    text-align: right;
-    .grid-column: 1 / span 1;
-}
-
-.page-list .page-link {
-    .grid-column: 2 / span 1;
+.post-link {
+    display: flex;
+    justify-content: space-between;
 }
