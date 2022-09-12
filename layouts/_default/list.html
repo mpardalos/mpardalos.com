@@ -1,9 +1,3 @@
 {{ define "body" }}
-    <div class="page-list">
-    {{ range .Data.Pages }}
-        <a href="{{.RelPermalink}}" class="page-link" {{ if .Draft }}class="draft"{{end}}>
-            {{ .Title }} <span class="date"> {{ .Date.Format "Jan 1, 2006" }} </span>
-        </a>
-    {{ end }}
-    </div>
+  {{ partial "list.html" . }}
 {{ end }}

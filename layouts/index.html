@@ -1,11 +1,14 @@
-{{/* Overriden from hyde-hyde */}}
-
 {{ define "header" }}
   {{ partial "header.html" . }}
 {{ end }}
 
-{{ define "content" }}
-  {{ partial "blog/content.html" (.Site.GetPage "/blog") }}
+{{ define "title" }}
+<!-- No title -->
+{{ end}}
+
+{{ define "body" }}
+  <h2>Blog</h2>
+  {{ partial "list.html" (.Site.GetPage "/blog") }}
 {{ end }}
 
 {{ define "footer" }}

@@ -4,13 +4,55 @@ header {
     margin-bottom: 10px;
 
     display: flex;
-    align-content: space-around;
     justify-content: space-between;
+
+    font-size: 1.5em;
+}
+
+body {
+    max-width: 800px;
+    margin: auto;
+}
+
+#my-name {
+    text-decoration: none;
+    color: black;
+}
+
+.page-list {
+    display: grid;
+    grid-template-columns: "minmax auto";
+    grid-template-rows: "repeat(1em)";
+}
+
+.page-list .date {
+    .grid-column: 1;
+}
+
+.page-list .page-link {
+    .grid-column: 2;
+}
+
+.page-external-link {
+    display: block;
+    font-size: 1.2em;
+}
+
+.external-marker {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 2px;
 }
 
 #page-title {
     font-size: 2em;
     margin-bottom: 20px;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    text-align: center;
+    width: 100%;
 }
 
 .page-link {
