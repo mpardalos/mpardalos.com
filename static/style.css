@@ -67,14 +67,15 @@ body {
     text-align: justified;
 }
 
-.home-content section {
-    border-top: 2px solid black;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+h2 { display: flex; }
 
-.home-content section:last-child {
-    border-bottom: 2px solid black;
+h2:after {
+  color:black;
+  content:'';
+  flex:1;
+  border-bottom:groove 2px;
+  margin:auto 0.25em;
+  box-shadow: 0 -1px ;/* ou 0 1px si border-style:ridge */
 }
 
 .post-link {
