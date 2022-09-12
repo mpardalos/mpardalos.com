@@ -6,13 +6,15 @@ header {
     display: flex;
     justify-content: space-between;
 
-    font-size: 1.5em;
+    font-family: monospace;
+    font-size: 2em;
 }
 
 body {
     max-width: 800px;
     margin: auto;
     background-color: rgb(230, 230, 230);
+    font-family: helvetica, sans-serif;
 }
 
 .section-heading {
