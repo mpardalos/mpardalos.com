@@ -2,17 +2,6 @@ baseURL = "https://mpardalos.xyz/"
 languageCode = "en-us"
 title = "Michalis Pardalos"
 
-theme = "hyde-hyde"
-
-[params]
-    description = """
-    Imperial College student, functional programming enthusiast. Interested in
-    all areas of computer science, but (for now) primarily programming language
-    theory
-    """
-
-    themeColor = "theme-base-09"
-
 [params.social]
     github = "mpardalos"
     linkedin = "mpardalos"
@@ -21,6 +10,7 @@ theme = "hyde-hyde"
 [Menus]
     main = [
         { Name = "About me", URL = "/about" },
+        { Name = "Current", URL = "/current" },
         { Name = "Blog", URL = "/blog" },
         { Name = "Experience/Projects", URL = "/portfolio" },
         { Name = "CV", URL = "/cv.pdf" },

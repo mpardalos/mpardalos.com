@@ -1,11 +1,17 @@
-{{/* Overriden from hyde-hyde */}}
-
 {{ define "header" }}
   {{ partial "header.html" . }}
 {{ end }}
 
-{{ define "content" }}
-  {{ partial "blog/content.html" (.Site.GetPage "/blog") }}
+{{ define "body" }}
+<section class="home-page-section about-blurb">
+  <p>
+    Hi there! I'm Michalis. This is my personal website. I am a PhD student,
+    working at the intersection of formal methods and hardware design.
+  </p>
+</section>
+<section class="home-page-section">
+  {{ partial "list.html" (.Site.GetPage "/blog") }}
+</section>
 {{ end }}
 
 {{ define "footer" }}

@@ -1,0 +1,11 @@
+<div class="page-list">
+  {{ range .Data.Pages }}
+  <span class="date"> {{ .Date.Format "Jan 1, 2006" }} </span>
+  <a href="{{.RelPermalink}}" class="page-link" {{ if .Draft }}class="draft"{{end}}>
+    {{ .Title }}
+    {{ if .Params.external_link }}
+    <span class="external-marker">external</span>
+    {{ end }}
+  </a>
+  {{ end }}
+</div>

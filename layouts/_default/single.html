@@ -1,0 +1,7 @@
+{{ define "body" }}
+    <div id="page-title">{{.Title}}</div>
+    {{ .Content }}
+    {{ if .Params.external_link }}
+        <a class="page-external-link" href="{{.Params.external_link}}">External Link</a>
+    {{ end }}
+{{ end }}

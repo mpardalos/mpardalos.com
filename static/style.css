@@ -1,0 +1,90 @@
+header {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-family: monospace;
+    font-size: 2em;
+}
+
+body {
+    max-width: 800px;
+    margin: auto;
+    background-color: rgb(230, 230, 230);
+    font-family: helvetica, sans-serif;
+}
+
+/* Prevent text from touching sides of screen on mobile */
+@media screen and (max-width: 840px) {
+    body {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
+.section-heading {
+    font-size: 2em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+#my-name {
+    text-decoration: none;
+    color: black;
+}
+
+.page-external-link {
+    display: block;
+    font-size: 1.2em;
+}
+
+.external-marker {
+    padding: 2px;
+    font-weight: bold;
+    font-variant: all-small-caps;
+}
+
+#page-title {
+    font-size: 3em;
+    margin-top: 20px;
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.draft:before {
+    content: "DRAFT"
+    background: red;
+}
+
+.about-blurb {
+    text-align: justified;
+}
+
+.home-page-section {
+    border-top: 2px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.home-page-section:last-child {
+    border-bottom: 2px solid black;
+}
+
+.page-list {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+.page-list .date {
+    padding-right: 10px;
+    text-align: right;
+    .grid-column: 1 / span 1;
+}
+
+.page-list .page-link {
+    .grid-column: 2 / span 1;
+}
