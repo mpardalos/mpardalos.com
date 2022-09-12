@@ -22,7 +22,3 @@ header {
     content: "DRAFT"
     background: red;
 }
-
-.date:before {
-    content: "Date: "
-}
