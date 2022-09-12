@@ -1,5 +1,5 @@
 ---
-title: Vericert - resource sharing for verified High Level Synthesis
+title: Vericert
 description: 
 weight: 1
 ---
