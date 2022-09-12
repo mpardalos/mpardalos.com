@@ -3,15 +3,17 @@
 {{ end }}
 
 {{ define "body" }}
-<section class="home-page-section about-blurb">
-  <p>
-    Hi there! I'm Michalis. This is my personal website. I am a PhD student,
-    working at the intersection of formal methods and hardware design.
-  </p>
-</section>
-<section class="home-page-section">
-  {{ partial "list.html" (.Site.GetPage "/blog") }}
-</section>
+<div class="home-content">
+  <section class="about-blurb">
+    <p>
+      Hi there! I'm Michalis. This is my personal website. I am a PhD student,
+      working at the intersection of formal methods and hardware design.
+    </p>
+  </section>
+  <section>
+    {{ partial "list.html" (.Site.GetPage "/blog") }}
+  </section>
+</div>
 {{ end }}
 
 {{ define "footer" }}
