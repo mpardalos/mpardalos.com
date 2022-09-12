@@ -1,0 +1,9 @@
+{{ define "body" }}
+<h1>Portfolio</h1>
+{{ range .Data.Pages }}
+<div class="portfolio-item">
+  <h2>{{.Title}}</h2>
+  {{ .Content }}
+</div>
+{{ end }}
+{{ end }}
