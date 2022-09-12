@@ -48,14 +48,11 @@ body {
 }
 
 #page-title {
-    font-size: 2em;
+    font-size: 3em;
+    margin-top: 20px;
+    display: block;
     margin-bottom: 20px;
-    text-decoration: underline;
-    display: inline-block;
-    margin-bottom: 20px;
-
     text-align: center;
-    width: 100%;
 }
 
 .draft:before {
