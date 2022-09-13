@@ -96,3 +96,13 @@ h2:after {
 .link-list > * {
     place-self: center start;
 }
+
+.article-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    padding: 10px 0px;
+}
