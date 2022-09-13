@@ -1,18 +1,3 @@
 baseURL = "https://mpardalos.xyz/"
 languageCode = "en-us"
 title = "Michalis Pardalos"
-
-[params.social]
-    github = "mpardalos"
-    linkedin = "mpardalos"
-    instagram = "mpgrphoto"
-
-[Menus]
-    main = [
-        { Name = "About me", URL = "/about" },
-        { Name = "Current", URL = "/current" },
-        { Name = "Blog", URL = "/blog" },
-        { Name = "Experience/Projects", URL = "/portfolio" },
-        { Name = "CV", URL = "/cv.pdf" },
-        # { Name = "Gitlab", URL = "https://gitlab.com/michail_pardalos" }
-    ]
