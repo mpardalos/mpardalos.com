@@ -24,6 +24,10 @@
     </div>
   </section>
   <section>
+    <h2>Media</h2>
+    {{ partial "list.html" (.Site.GetPage "/media").Pages }}
+  </section>
+  <section>
     <h2>Posts</h2>
     {{ partial "list.html" (.Site.GetPage "/blog").Pages }}
   </section>
