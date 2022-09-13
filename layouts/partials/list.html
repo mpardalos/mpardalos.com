@@ -1,5 +1,5 @@
 <div class="page-list">
-  {{ range .Data.Pages }}
+  {{ range . }}
   <div class="post-link">
     <a href="{{.RelPermalink}}" class="page-link" {{ if .Draft }}class="draft"{{end}}>
       {{ .Title }}

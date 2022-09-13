@@ -25,7 +25,7 @@
   </section>
   <section>
     <h2>Posts</h2>
-    {{ partial "list.html" (.Site.GetPage "/blog") }}
+    {{ partial "list.html" (.Site.GetPage "/blog").Pages }}
   </section>
 </div>
 {{ end }}
