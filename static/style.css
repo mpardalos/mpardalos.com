@@ -106,3 +106,24 @@ h2:after {
     border-top: 1px solid grey;
     padding: 10px 0px;
 }
+
+.spoiler {
+    color: grey;
+    background-color: grey;
+    padding: 3px;
+}
+
+.spoiler:before {
+    color: white;
+    content: "Spoiler";
+    position: absolute;
+}
+
+.spoiler:hover:before {
+    display: none;
+}
+
+.spoiler:hover {
+    color: inherit;
+    background-color: inherit;
+}
