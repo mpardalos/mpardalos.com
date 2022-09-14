@@ -93,6 +93,7 @@ h2:after {
 
 .link-list > * {
     display: block;
+    break-inside: avoid-column;
 }
 
 .article-details {
