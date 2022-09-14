@@ -24,7 +24,7 @@
     </div>
   </section>
   <section>
-    <h2>Media</h2>
+    <h2><a href="/media">Media</a></h2>
     <p>
       Movies, shows, music, games. I do my best to hide spoilers.
       <span class="spoiler">Like this</span>
@@ -32,7 +32,7 @@
     {{ partial "media-list.html" (.Site.GetPage "/media").Pages }}
   </section>
   <section>
-    <h2>Posts</h2>
+    <h2><a href="/blog">Blog</a></h2>
     {{ partial "list.html" (.Site.GetPage "/blog").Pages }}
   </section>
 </div>
