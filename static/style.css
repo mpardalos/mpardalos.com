@@ -88,13 +88,11 @@ h2:after {
 }
 
 .link-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-row-gap: 10px;
+    columns: 200px 3;
 }
 
 .link-list > * {
-    place-self: center start;
+    display: block;
 }
 
 .article-details {
