@@ -82,18 +82,40 @@ h2:after {
   box-shadow: 0 -1px ;/* ou 0 1px si border-style:ridge */
 }
 
-.post-link {
+.post-list {
+    list-style: none;
+}
+
+.post-list li {
+    list-style: none;
     display: flex;
     justify-content: space-between;
 }
 
+.post-list li::after {
+  background-image: radial-gradient(circle, currentcolor 1px, transparent 1.5px);
+  background-position: bottom;
+  background-size: 1ex 4.5px;
+  background-repeat: space no-repeat;
+  content: "";
+  flex-grow: 1;
+  height: 1em;
+  order: 2;
+}
+
+.post-list {
+    padding-left: unset;
+}
+
+.post-list li .details {
+    order: 3;
+}
+
 .details .medium {
-    color: white;
-    background-color: grey;
-    border-radius: 2px;
-    padding: 4px 4px 0px 4px;
-    margin: 0px 5px 5px 5px;
     display: inline-block;
+    padding: 2px;
+    font-weight: bold;
+    font-variant: all-small-caps;
 }
 
 .link-list {

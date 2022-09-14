@@ -1,7 +1,7 @@
-<div class="page-list">
+<ul class="post-list">
   {{ range . }}
-  <div class="post-link">
-    <a href="{{.RelPermalink}}" class="page-link" {{ if .Draft }}class="draft"{{end}}>
+  <li>
+    <a href="{{.RelPermalink}}" {{ if .Draft }}class="draft"{{end}}>
       {{ .Title }}
       {{ if .Params.external_link }}
       <span class="external-marker">external</span>
@@ -11,6 +11,6 @@
       <span class="medium">{{ .Params.medium }}</span>
       <span class="date">{{ .Date.Format "Jan 2, 2006" }} </span>
     </span>
-  </div>
+  </li>
   {{ end }}
-</div>
+</ul>
