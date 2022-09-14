@@ -1,5 +1,5 @@
 ---
-title: Current
+title: Now
 ---
 
 ## Work
