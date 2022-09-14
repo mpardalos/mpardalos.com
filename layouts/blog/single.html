@@ -1,0 +1,15 @@
+{{ define "body" }}
+<article>
+    {{ if .Title }}
+    <h1>{{.Title}}</h1>
+    {{ end }}
+    <div class="article-details">
+        <span class="date">Date: {{ .Date.Format "Monday, January 2, 2006"}}</span>
+        <span class="reading-time">Reading time: {{ .ReadingTime }} {{ if (gt .ReadingTime 1) }}minutes{{ else }}minute{{ end }}</span>
+    </div>
+    {{ .Content }}
+    {{ if .Params.external_link }}
+        <a class="page-external-link" href="{{.Params.external_link}}">External Link</a>
+    {{ end }}
+</article>
+{{ end }}
