@@ -137,6 +137,8 @@ async function handleCreate(body) {
     if (!DO_NOT_CREATE) {
       const github_response = await githubCreateFile(path, content)
       console.log(`GITHUB RESPONSE: ${github_response}`);
+    } else {
+      console.log("DO_NOT_CREATE");
     }
 
     return CREATED(`${HOSTNAME}/likes`);
@@ -149,6 +151,8 @@ async function handleCreate(body) {
     if (!DO_NOT_CREATE) {
       const github_response = await githubCreateFile(path, content)
       console.log(`GITHUB RESPONSE: ${github_response}`);
+    } else {
+      console.log("DO_NOT_CREATE");
     }
 
     return CREATED(`${HOSTNAME}/notes/${slug}`);
