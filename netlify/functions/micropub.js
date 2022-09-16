@@ -129,20 +129,23 @@ function handleUndelete(body) {
 // *********************** HELPERS ****************************************************************************
 
 /// Perform an HTTP GET request. `options` as in https.request
-async function get(options) {
+async function request(options, body) {
   return new Promise((resolve, reject) => {
     const request = https.request({
       port: 443,
-      method: 'GET',
       ...options,
     }, res => {
       res.on('data', resolve)
     });
-    console.log(request);
     request.on('error', reject)
+    if (body)
+      request.write(body);
     request.end();
   })
+}
 
+async function get(options) {
+  return request({ ...options, method: 'GET' }, null)
 }
 
 function trimPrefix(str, prefix) {
