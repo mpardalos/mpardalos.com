@@ -148,7 +148,7 @@ function handleUndelete(body) {
 async function githubCreateFile(path, content) {
   console.log(`GITHUB CREATE AT ${path}:\n---\n\t${content.replace('\n', '\n\t')}\n---`)
   const base64_content = Buffer.from(content).toString('base64');
-  return put({
+  return await put({
     hostname: 'api.github.com',
     path: `/repos/mpardalos/mpardalos.xyz/contents/${path}`,
     headers: {
