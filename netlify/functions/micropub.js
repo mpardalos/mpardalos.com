@@ -24,10 +24,10 @@ exports.handler = async function(event) {
       return INVALID_REQUEST;
     case 'POST':
       const request_body = (() => {
-        switch (event.headers['content-type']) {
+        switch (event.headers['content-type'].split(';')[0].trim()) {
           case 'application/json':
             return json_parse_or_null(event.body);
-          case 'x-www-form-urlencoded':
+          case 'application/x-www-form-urlencoded':
             return event.queryStringParameters;
         }
         return null;
