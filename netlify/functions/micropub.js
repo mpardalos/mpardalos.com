@@ -126,7 +126,8 @@ async function handleCreate(body) {
   const filename = `${slug}.md`;
   const path = `${directory}/${filename}`;
 
-  await githubCreateFile(path, content);
+  const github_response = await githubCreateFile(path, content)
+  console.log(`GITHUB RESPONSE: ${github_response}`);
 
   return CREATED(`notes/${slug}`);
 }
