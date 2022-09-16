@@ -1,17 +1,17 @@
 const https = require('https');
 
 exports.handler = async function(event) {
-  const auth_header = event.headers['authorization'];
-  if (!auth_header)
+  const authHeader = event.headers['authorization'];
+  if (!authHeader)
     return UNAUTHORIZED;
 
-  const auth_token = trimPrefix(auth_header, "Bearer ");
-  if (!auth_token)
+  const authToken = trimPrefix(authHeader, "Bearer ");
+  if (!authToken)
     return UNAUTHORIZED;
 
-  if (!await validateToken(auth_token)) {
+  const authorizationScope = await validateToken(authToken);
+  if (!authorizationScope)
     return UNAUTHORIZED;
-  }
 
   switch (event.httpMethod) {
     case 'GET':
@@ -70,6 +70,8 @@ function json_parse_or_null(text) {
   }
 }
 
+/// Validate the token and return its authorization scope. Returns an empty
+/// array if not authorized
 async function validateToken(token) {
   return new Promise((resolve, reject) => {
     const request = https.request({
@@ -83,27 +85,14 @@ async function validateToken(token) {
       },
       responseType: 'json'
     }, res => {
-      res.on('data', (data) => {
-        console.log(`Response: ${data}`);
-        resolve(false);
+      res.on('data', (response) => {
+        resolve(response.scope || [])
       })
     });
     console.log(request);
-    request.on('error', () => resolve(false))
+    request.on('error', () => resolve([]))
     request.end();
   })
-  // try {
-  //   const { body } = await got(tokenEndpoint, {
-  //     headers: {
-  //       'accept': 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     },
-  //     responseType: 'json'
-  //   })
-  //   return body
-  // } catch (err) {
-  //   console.error(err)
-  // }
 }
 
 function authTokenScope(token) {
