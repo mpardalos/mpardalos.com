@@ -118,26 +118,44 @@ const CREATED = (location) => response(201, undefined, { location })
 async function handleCreate(body) {
   console.log(`CREATE ${JSON.stringify(body)}`);
 
-  const content = body.properties.content;
-  if (!content)
-    return INVALID_REQUEST("No post content");
-
-  let slug = new Date().getTime().toString();
+  const now = new Date();
+  let slug = now.getTime().toString();
   if (body.properties.title) {
     const safeTitle = body.properties.title.toLowerCase().replace(' ', '-');
     slug += `-${safeTitle}`;
   }
 
-  const directory = 'content/notes';
-  const filename = `${slug}.md`;
-  const path = `${directory}/${filename}`;
+  if (body.properties['like-of']) {
+    const filename = `${slug}.json`;
+    const directory = 'content/likes';
+    const path = `${directory}/${filename}`;
+    const content = JSON.stringify({
+      date: now.toDateString(),
+      like_of: body.properties['like-of']
+    })
 
-  if (!DO_NOT_CREATE) {
-    const github_response = await githubCreateFile(path, content)
-    console.log(`GITHUB RESPONSE: ${github_response}`);
+    if (!DO_NOT_CREATE) {
+      const github_response = await githubCreateFile(path, content)
+      console.log(`GITHUB RESPONSE: ${github_response}`);
+    }
+
+    return CREATED(`${HOSTNAME}/likes`);
+  } else if (body.properties['content']) {
+    const filename = `${slug}.md`;
+    const directory = 'content/notes';
+    const path = `${directory}/${filename}`;
+    const content = body.properties.content;
+
+    if (!DO_NOT_CREATE) {
+      const github_response = await githubCreateFile(path, content)
+      console.log(`GITHUB RESPONSE: ${github_response}`);
+    }
+
+    return CREATED(`${HOSTNAME}/notes/${slug}`);
+  } else {
+    return INVALID_REQUEST("No post content");
   }
 
-  return CREATED(`${HOSTNAME}/notes/${slug}`);
 }
 
 function handleUpdate(body) {
