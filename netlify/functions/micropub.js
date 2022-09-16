@@ -72,6 +72,7 @@ async function validateToken(token) {
         'Authorization': `Bearer ${token}`
       },
     })
+    console.log(`Token scope: ${response.scope}`);
     return response.scope || [];
   } catch (err) {
     return [];
