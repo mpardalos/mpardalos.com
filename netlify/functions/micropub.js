@@ -25,20 +25,20 @@ exports.handler = logged(async function (event) {
         case 'source':
           return NOT_IMPLEMENTED;
       }
-      return INVALID_REQUEST;
+      return INVALID_REQUEST("Invalid q parameter");
     case 'POST':
       const request_body = (() => {
         switch (event.headers['content-type'].split(';')[0].trim()) {
           case 'application/json':
-            return json_parse_or_null(event.body);
+            return json_parse_or_null(event.body) || "Could not parse JSON body";
           case 'application/x-www-form-urlencoded':
             return Object.fromEntries((new URLSearchParams(event.body)).entries());
         }
-        return null;
+        return `Unknown content-type: ${event.headers['content-type']}`;
       })();
 
-      if (!request_body)
-        return INVALID_REQUEST;
+      if (!request_body || typeof request_body !== 'object')
+        return INVALID_REQUEST(request_body);
 
       const action = request_body['action'] || 'create';
       // if (!authTokenScope(auth_token).includes(action))
@@ -54,10 +54,10 @@ exports.handler = logged(async function (event) {
         case 'undelete':
           return await handleUndelete(normalized_body);
       }
-      return INVALID_REQUEST;
+      return INVALID_REQUEST(`Unknown action: ${action}`);
   }
 
-  return INVALID_REQUEST;
+  return INVALID_REQUEST("Not a POST or GET request");
 });
 
 /// Validate the token and return its authorization scope. Returns an empty
@@ -107,7 +107,7 @@ const error = (statusCode, error, error_description) => response(statusCode, { e
 const UNAUTHORIZED = error(401, "unauthorized");
 const FORBIDDEN = error(403, "forbidden");
 const INSUFFICIENT_SCOPE = error(403, "insufficient_scope");
-const INVALID_REQUEST = error(400, "invalid_request");
+const INVALID_REQUEST = (reason) => error(400, "invalid_request", reason);
 const FAILED_JSON_PARSING = error(400, "invalid_request", "Could not parse JSON body");
 const NOT_IMPLEMENTED = error(501, "not_implemented");
 const CREATED = (location) => response(201, undefined, { location })
@@ -120,7 +120,7 @@ async function handleCreate(body) {
 
   const content = body.properties.content;
   if (!content)
-    return INVALID_REQUEST;
+    return INVALID_REQUEST("No post content");
 
   let slug = new Date().getTime().toString();
   if (body.properties.title) {
