@@ -128,8 +128,7 @@ async function handleCreate(body) {
   const filename = `${slug}.md`;
   const path = `${directory}/${filename}`;
 
-  if (!DO_NOT_CREATE)
-  {
+  if (!DO_NOT_CREATE) {
     const github_response = await githubCreateFile(path, content)
     console.log(`GITHUB RESPONSE: ${github_response}`);
   }
