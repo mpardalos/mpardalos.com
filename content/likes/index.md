@@ -1,0 +1,4 @@
+---
+title: Likes
+type: likes
+---
