@@ -131,3 +131,18 @@ const INSUFFICIENT_SCOPE = error(403, "insufficient_scope");
 const INVALID_REQUEST = error(400, "invalid_request");
 const FAILED_JSON_PARSING = error(400, "invalid_request", "Could not parse JSON body");
 const NOT_IMPLEMENTED = error(501, "not_implemented");
+
+function handleUpdate(body) {
+  console.log(`CREATE ${JSON.stringify(body)}`);
+  return NOT_IMPLEMENTED;
+}
+
+function handleDelete(body) {
+  console.log(`CREATE ${JSON.stringify(body)}`);
+  return NOT_IMPLEMENTED;
+}
+
+function handleUndelete(body) {
+  console.log(`CREATE ${JSON.stringify(body)}`);
+  return NOT_IMPLEMENTED;
+}
