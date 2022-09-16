@@ -1,6 +1,6 @@
 const https = require('https');
 
-exports.handler = async function(event) {
+exports.handler = async function (event) {
   const authHeader = event.headers['authorization'];
   if (!authHeader)
     return UNAUTHORIZED;
