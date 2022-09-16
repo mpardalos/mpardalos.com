@@ -44,13 +44,13 @@ exports.handler = async function (event) {
       const normalized_body = normalize_body(event.headers['content-type'], request_body);
       switch (action) {
         case 'create':
-          return handleCreate(normalized_body);
+          return await handleCreate(normalized_body);
         case 'update':
-          return handleUpdate(normalized_body);
+          return await handleUpdate(normalized_body);
         case 'delete':
-          return handleDelete(normalized_body);
+          return await handleDelete(normalized_body);
         case 'undelete':
-          return handleUndelete(normalized_body);
+          return await handleUndelete(normalized_body);
       }
       return INVALID_REQUEST;
   }
