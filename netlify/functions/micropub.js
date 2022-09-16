@@ -122,7 +122,7 @@ async function handleCreate(body) {
     slug += `-${safeTitle}`;
   }
 
-  const directory = 'contents/notes';
+  const directory = 'content/notes';
   const filename = `${slug}.md`;
   const path = `${directory}/${filename}`;
 
