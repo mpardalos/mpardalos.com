@@ -1,6 +1,7 @@
 const https = require('https');
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
 const HOSTNAME = "https://mpardalos.xyz"
 
 exports.handler = async function (event) {
@@ -127,8 +128,11 @@ async function handleCreate(body) {
   const filename = `${slug}.md`;
   const path = `${directory}/${filename}`;
 
-  const github_response = await githubCreateFile(path, content)
-  console.log(`GITHUB RESPONSE: ${github_response}`);
+  if (!DO_NOT_CREATE)
+  {
+    const github_response = await githubCreateFile(path, content)
+    console.log(`GITHUB RESPONSE: ${github_response}`);
+  }
 
   return CREATED(`${HOSTNAME}/notes/${slug}`);
 }
