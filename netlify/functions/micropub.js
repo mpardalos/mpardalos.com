@@ -65,7 +65,7 @@ exports.handler = async function (event) {
 async function validateToken(token) {
   console.log(`Validate token: ${token}`);
   try {
-    const response = await get({
+    const response_raw = await get({
       hostname: 'tokens.indieauth.com',
       path: '/token',
       headers: {
@@ -73,6 +73,8 @@ async function validateToken(token) {
         'Authorization': `Bearer ${token}`
       },
     })
+    console.log(`Indieauth response: ${response_raw}`);
+    const response = JSON.parse(response_raw);
     console.log(`Token scope: ${response.scope}`);
     return response.scope || [];
   } catch (err) {
