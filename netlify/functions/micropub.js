@@ -55,48 +55,22 @@ exports.handler = async function(event) {
   return INVALID_REQUEST;
 };
 
-function trimPrefix(str, prefix) {
-  if (str.startsWith(prefix))
-    return str.slice(prefix.length);
-  else
-    return null;
-}
-
-function json_parse_or_null(text) {
-  try {
-    return JSON.parse(text);
-  } catch (SyntaxError) {
-    return null;
-  }
-}
-
 /// Validate the token and return its authorization scope. Returns an empty
 /// array if not authorized
 async function validateToken(token) {
-  return new Promise((resolve, reject) => {
-    const request = https.request({
+  try {
+    const response = await get({
       hostname: 'tokens.indieauth.com',
-      port: 443,
       path: '/token',
-      method: 'GET',
       headers: {
         'accept': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      responseType: 'json'
-    }, res => {
-      res.on('data', (response) => {
-        resolve(response.scope || [])
-      })
-    });
-    console.log(request);
-    request.on('error', () => resolve([]))
-    request.end();
-  })
-}
-
-function authTokenScope(token) {
-  return ['create', 'update', 'delete'];
+    })
+    return response.scope || [];
+  } catch (err) {
+    return [];
+  }
 }
 
 function normalize_body(contentType, body) {
@@ -116,11 +90,6 @@ function normalize_body(contentType, body) {
   return normalizedBody;
 }
 
-function handleCreate(body) {
-  console.log(`CREATE ${JSON.stringify(body)}`);
-  return NOT_IMPLEMENTED;
-}
-
 const response = (statusCode, body, headers) => ({ statusCode, headers, body: JSON.stringify(body) })
 const success = (body, headers) => response(200, body, headers);
 const error = (statusCode, error, error_description) => response(statusCode, { error, error_description });
@@ -131,6 +100,14 @@ const INSUFFICIENT_SCOPE = error(403, "insufficient_scope");
 const INVALID_REQUEST = error(400, "invalid_request");
 const FAILED_JSON_PARSING = error(400, "invalid_request", "Could not parse JSON body");
 const NOT_IMPLEMENTED = error(501, "not_implemented");
+
+// ********************** BACKEND ****************************************************************************
+// Functions to perform the actual changes to the website
+
+function handleCreate(body) {
+  console.log(`CREATE ${JSON.stringify(body)}`);
+  return NOT_IMPLEMENTED;
+}
 
 function handleUpdate(body) {
   console.log(`CREATE ${JSON.stringify(body)}`);
@@ -145,4 +122,38 @@ function handleDelete(body) {
 function handleUndelete(body) {
   console.log(`CREATE ${JSON.stringify(body)}`);
   return NOT_IMPLEMENTED;
+}
+
+// *********************** HELPERS ****************************************************************************
+
+/// Perform an HTTP GET request. `options` as in https.request
+async function get(options) {
+  return new Promise((resolve, reject) => {
+    const request = https.request({
+      port: 443,
+      method: 'GET',
+      ...options,
+    }, res => {
+      res.on('data', resolve)
+    });
+    console.log(request);
+    request.on('error', reject)
+    request.end();
+  })
+
+}
+
+function trimPrefix(str, prefix) {
+  if (str.startsWith(prefix))
+    return str.slice(prefix.length);
+  else
+    return null;
+}
+
+function json_parse_or_null(text) {
+  try {
+    return JSON.parse(text);
+  } catch (SyntaxError) {
+    return null;
+  }
 }
