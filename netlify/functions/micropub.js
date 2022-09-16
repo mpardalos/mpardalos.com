@@ -1,7 +1,7 @@
 const https = require('https');
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
-const HOSTNAME = "mpardalos.xyz"
+const HOSTNAME = "https://mpardalos.xyz"
 
 exports.handler = async function (event) {
   const authHeader = event.headers['authorization'];
