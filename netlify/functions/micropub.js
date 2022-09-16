@@ -28,13 +28,14 @@ exports.handler = async function(event) {
           case 'application/json':
             return json_parse_or_null(event.body);
           case 'application/x-www-form-urlencoded':
-            return event.queryStringParameters;
+            return Object.fromEntries((new URLSearchParams(event.body)).entries());
         }
         return null;
       })();
 
       if (!request_body)
         return INVALID_REQUEST;
+
       const action = request_body['action'] || 'create';
       // if (!authTokenScope(auth_token).includes(action))
       //   return INSUFFICIENT_SCOPE;
@@ -79,12 +80,13 @@ function normalize_body(contentType, body) {
 
   let normalizedBody = { 'type': ['h-entry'], 'properties': {} };
   for (let [key, value] of Object.entries(body)) {
+    key = key.trim();
     if (key == 'h') {
       normalizedBody.type = [value]
     } else if (key.endsWith("[]")) {
-      normalizedBody.properties['key'] = value.split(",");
+      normalizedBody.properties[key] = value.split(",");
     } else {
-      normalizedBody.properties['key'] = value;
+      normalizedBody.properties[key] = value;
     }
   }
   return normalizedBody;
