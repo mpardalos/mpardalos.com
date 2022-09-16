@@ -63,6 +63,7 @@ exports.handler = async function (event) {
 /// Validate the token and return its authorization scope. Returns an empty
 /// array if not authorized
 async function validateToken(token) {
+  console.log(`Validate token: ${token}`);
   try {
     const response = await get({
       hostname: 'tokens.indieauth.com',
