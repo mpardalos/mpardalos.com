@@ -104,6 +104,7 @@ const INSUFFICIENT_SCOPE = error(403, "insufficient_scope");
 const INVALID_REQUEST = error(400, "invalid_request");
 const FAILED_JSON_PARSING = error(400, "invalid_request", "Could not parse JSON body");
 const NOT_IMPLEMENTED = error(501, "not_implemented");
+const CREATED = (location) => response(201, undefined, { location })
 
 // ********************** BACKEND ****************************************************************************
 // Functions to perform the actual changes to the website
@@ -127,7 +128,7 @@ async function handleCreate(body) {
 
   await githubCreateFile(path, content);
 
-  return success(undefined, { 'Location': `notes/${slug}` });
+  return CREATED(`notes/${slug}`);
 }
 
 function handleUpdate(body) {
