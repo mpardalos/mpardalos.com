@@ -4,7 +4,7 @@ const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
 const HOSTNAME = "https://mpardalos.xyz"
 
-exports.handler = async function (event) {
+exports.handler = logged(async function (event) {
   const authHeader = event.headers['authorization'];
   if (!authHeader)
     return UNAUTHORIZED;
@@ -58,7 +58,7 @@ exports.handler = async function (event) {
   }
 
   return INVALID_REQUEST;
-};
+});
 
 /// Validate the token and return its authorization scope. Returns an empty
 /// array if not authorized
@@ -224,5 +224,13 @@ function json_parse_or_null(text) {
     return JSON.parse(text);
   } catch (SyntaxError) {
     return null;
+  }
+}
+
+function logged(fn) {
+  return async (...args) => {
+    const res = await fn(...args);
+    console.log("RESPONSE ", res);
+    return res;
   }
 }
