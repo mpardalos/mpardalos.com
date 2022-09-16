@@ -201,7 +201,7 @@ async function get(options) {
 }
 
 async function put(options, body) {
-  return request({ ...options, method: 'GET' }, body)
+  return request({ ...options, method: 'PUT' }, body)
 }
 
 function trimPrefix(str, prefix) {
