@@ -1,5 +1,7 @@
 const https = require('https');
 
+const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+
 exports.handler = async function (event) {
   const authHeader = event.headers['authorization'];
   if (!authHeader)
@@ -106,9 +108,26 @@ const NOT_IMPLEMENTED = error(501, "not_implemented");
 // ********************** BACKEND ****************************************************************************
 // Functions to perform the actual changes to the website
 
-function handleCreate(body) {
+async function handleCreate(body) {
   console.log(`CREATE ${JSON.stringify(body)}`);
-  return NOT_IMPLEMENTED;
+
+  const content = body.properties.content;
+  if (!content)
+    return INVALID_REQUEST;
+
+  let slug = new Date().getTime().toString();
+  if (body.properties.title) {
+    const safeTitle = body.properties.title.toLowerCase().replace(' ', '-');
+    slug += `-${safeTitle}`;
+  }
+
+  const directory = 'contents/notes';
+  const filename = `${slug}.md`;
+  const path = `${directory}/${filename}`;
+
+  await githubCreateFile(path, content);
+
+  return success(undefined, { 'Location': `notes/${slug}` });
 }
 
 function handleUpdate(body) {
@@ -126,9 +145,28 @@ function handleUndelete(body) {
   return NOT_IMPLEMENTED;
 }
 
+async function githubCreateFile(path, content) {
+  console.log(`GITHUB CREATE AT ${path}:\n---\n\t${content.replace('\n', '\n\t')}\n---`)
+  const base64_content = Buffer.from(content).toString('base64');
+  return put({
+    hostname: 'api.github.com',
+    path: `/repos/mpardalos/mpardalos.xyz/contents/${path}`,
+    headers: {
+      'User-Agent': 'node', // Github API requires a user-agent header
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}`
+    },
+
+  }, {
+    "message": `Micropub: Create ${path}`,
+    "content": base64_content
+  })
+}
+
 // *********************** HELPERS ****************************************************************************
 
-/// Perform an HTTP GET request. `options` as in https.request
+/// Perform an HTTP request. `options` as in https.request.
+/// If `body` is an object or an array, it will be json-encoded
 async function request(options, body) {
   return new Promise((resolve, reject) => {
     const request = https.request({
@@ -138,14 +176,23 @@ async function request(options, body) {
       res.on('data', resolve)
     });
     request.on('error', reject)
-    if (body)
-      request.write(body);
+    if (body) {
+      if (typeof body === 'object') {
+        request.write(JSON.stringify(body));
+      } else {
+        request.write(body);
+      }
+    }
     request.end();
   })
 }
 
 async function get(options) {
   return request({ ...options, method: 'GET' }, null)
+}
+
+async function put(options, body) {
+  return request({ ...options, method: 'GET' }, body)
 }
 
 function trimPrefix(str, prefix) {
