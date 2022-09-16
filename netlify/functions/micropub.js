@@ -169,6 +169,7 @@ async function githubCreateFile(path, content) {
 /// Perform an HTTP request. `options` as in https.request.
 /// If `body` is an object or an array, it will be json-encoded
 async function request(options, body) {
+  console.log(`REQUEST ${options.method} ${options.hostname}${options.path}`);
   return new Promise((resolve, reject) => {
     const request = https.request({
       port: 443,
