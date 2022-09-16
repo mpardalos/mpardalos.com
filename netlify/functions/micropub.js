@@ -21,7 +21,7 @@ exports.handler = async function (event) {
     case 'GET':
       switch (event.queryStringParameters['q']) {
         case 'config':
-          return SUCCESS(CONFIG);
+          return success({});
         case 'source':
           return NOT_IMPLEMENTED;
       }
