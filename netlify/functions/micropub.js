@@ -175,7 +175,13 @@ async function request(options, body) {
       port: 443,
       ...options,
     }, res => {
-      res.on('data', resolve)
+      let body = '';
+      res.on('data', (chunk) => {
+        body += chunk;
+      });
+      res.on('end', () => {
+        resolve(body.toString());
+      });
     });
     request.on('error', reject)
     if (body) {
