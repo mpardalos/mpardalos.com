@@ -1,6 +1,7 @@
 const https = require('https');
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
+const HOSTNAME = "mpardalos.xyz"
 
 exports.handler = async function (event) {
   const authHeader = event.headers['authorization'];
@@ -129,7 +130,7 @@ async function handleCreate(body) {
   const github_response = await githubCreateFile(path, content)
   console.log(`GITHUB RESPONSE: ${github_response}`);
 
-  return CREATED(`notes/${slug}`);
+  return CREATED(`${HOSTNAME}/notes/${slug}`);
 }
 
 function handleUpdate(body) {
