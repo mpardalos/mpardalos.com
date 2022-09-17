@@ -158,10 +158,6 @@ h2:after {
     background-color: inherit;
 }
 
-.h-feed .h-entry .e-content {
-    padding-left: 10px;
-}
-
 .h-feed .h-entry .e-content p:first-child {
     margin-top: 0;
 }
@@ -171,7 +167,7 @@ h2:after {
 
 .h-feed .h-entry {
     border-bottom: 1px solid grey;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .h-feed .h-entry .dt-published {

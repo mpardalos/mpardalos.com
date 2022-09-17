@@ -35,5 +35,9 @@
     <h2><a href="/blog">Blog</a></h2>
     {{ partial "list.html" (.Site.GetPage "/blog").Pages }}
   </section>
+  <section>
+    <h2>Feed</h2>
+    {{ (.GetPage "feed").Render "content" }}
+  </section>
 </div>
 {{ end }}

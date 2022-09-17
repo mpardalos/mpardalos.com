@@ -1,18 +1,3 @@
 {{ define "body" }}
-<div class="h-feed">
-  {{ range .Data.Pages }}
-  <div class="h-entry">
-    {{ with .Params.like_of }}
-    Liked
-    <a class="u-like-of" href="{{ . }}">{{ . }}</a>
-    {{ end }}
-    {{ with .Content }}
-    <div class="e-content">
-      {{ . }}
-    </div>
-    {{ end }}
-    <time class="dt-published" datetime="{{.Date}}">{{ .Date.Format "2/1/2006" }}</time>
-  </div>
-  {{ end }}
-</div>
+{{ .Render "content" }}
 {{ end }}
