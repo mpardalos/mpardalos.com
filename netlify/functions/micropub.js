@@ -145,7 +145,7 @@ async function handleCreate(body) {
   const github_response = await githubCreateFile(path, content)
   console.log(`GITHUB RESPONSE: ${github_response}`);
 
-  return CREATED(`${HOSTNAME}/feed/slug`);
+  return CREATED(`${HOSTNAME}/feed/${slug}`);
 
 }
 
