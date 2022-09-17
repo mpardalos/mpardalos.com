@@ -157,3 +157,24 @@ h2:after {
     color: inherit;
     background-color: inherit;
 }
+
+.h-feed .h-entry .e-content {
+    padding-left: 10px;
+}
+
+.h-feed .h-entry .e-content p:first-child {
+    margin-top: 0;
+}
+.h-feed .h-entry .e-content p:last-child {
+    margin-bottom: 0;
+}
+
+.h-feed .h-entry {
+    border-bottom: 1px solid grey;
+    padding: 10px;
+}
+
+.h-feed .h-entry .dt-published {
+    display: block;
+    text-align: right;
+}
