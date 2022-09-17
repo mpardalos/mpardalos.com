@@ -242,8 +242,12 @@ function json_parse_or_null(text) {
 
 function logged(fn) {
   return async (...args) => {
+    console.log(`REQUEST
+---
+${JSON.stringify(args[0])}
+---`);
     const res = await fn(...args);
-    console.log("RESPONSE ", res);
+    console.log(`RESPONSE\n---\n${res}\n---`);
     return res;
   }
 }
