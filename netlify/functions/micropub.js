@@ -4,7 +4,7 @@ const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
 const HOSTNAME = "https://mpardalos.xyz"
 
-exports.handler = logged(async function (event) {
+exports.handler = logged(async function(event) {
   const authHeader = event.headers['authorization'];
   if (!authHeader)
     return UNAUTHORIZED;
@@ -117,6 +117,9 @@ const CREATED = (location) => response(201, undefined, { location })
 
 async function handleCreate(body) {
   console.log(`CREATE ${JSON.stringify(body)}`);
+  if (!body.properties['content'] && !body.properties['like-of']) {
+    return INVALID_REQUEST("No post content or like-of");
+  }
 
   const now = new Date();
   let slug = now.getTime().toString();
@@ -124,41 +127,25 @@ async function handleCreate(body) {
     const safeTitle = body.properties.title.toLowerCase().replace(' ', '-');
     slug += `-${safeTitle}`;
   }
+  const directory = 'content/feed';
+  const filename = `${slug}.md`;
+  const path = `${directory}/${filename}`;
 
-  if (body.properties['like-of']) {
-    const filename = `${slug}.json`;
-    const directory = 'content/likes';
-    const path = `${directory}/${filename}`;
-    const content = JSON.stringify({
-      date: now.toDateString(),
-      like_of: body.properties['like-of']
-    })
-
-    if (!DO_NOT_CREATE) {
-      const github_response = await githubCreateFile(path, content)
-      console.log(`GITHUB RESPONSE: ${github_response}`);
-    } else {
-      console.log("DO_NOT_CREATE");
-    }
-
-    return CREATED(`${HOSTNAME}/likes`);
-  } else if (body.properties['content']) {
-    const filename = `${slug}.md`;
-    const directory = 'content/notes';
-    const path = `${directory}/${filename}`;
-    const content = body.properties.content;
-
-    if (!DO_NOT_CREATE) {
-      const github_response = await githubCreateFile(path, content)
-      console.log(`GITHUB RESPONSE: ${github_response}`);
-    } else {
-      console.log("DO_NOT_CREATE");
-    }
-
-    return CREATED(`${HOSTNAME}/notes/${slug}`);
-  } else {
-    return INVALID_REQUEST("No post content");
+  let content = ""
+  content += "---\n"
+  content += `date: ${formatISODate(date)}`
+  if (body.properties['like-of'])
+    content += `like_of: ${body.properties['like-of']}`
+  content += "---\n"
+  if (body.properties['content']) {
+    content += "\n"
+    content += body.properties['content']
   }
+
+  const github_response = await githubCreateFile(path, content)
+  console.log(`GITHUB RESPONSE: ${github_response}`);
+
+  return CREATED(`${HOSTNAME}/feed/slug`);
 
 }
 
@@ -179,6 +166,10 @@ function handleUndelete(body) {
 
 async function githubCreateFile(path, content) {
   console.log(`GITHUB CREATE AT ${path}:\n%%%%%%%\n${content}\n%%%%%%%`)
+  if (DO_NOT_CREATE) {
+    console.log("DO_NOT_CREATE")
+    return {}
+  }
   const base64_content = Buffer.from(content).toString('base64');
   return await put({
     hostname: 'api.github.com',
@@ -255,4 +246,8 @@ function logged(fn) {
     console.log("RESPONSE ", res);
     return res;
   }
+}
+
+function fmtISODate(date) {
+  return `${date.getYear()}-${date.getMonth() + 1}-${date.getDate()}`
 }
