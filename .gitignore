@@ -4,3 +4,4 @@ resources/_gen
 
 # Local Netlify folder
 .netlify
+/node_modules/
