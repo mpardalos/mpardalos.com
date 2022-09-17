@@ -133,9 +133,9 @@ async function handleCreate(body) {
 
   let content = ""
   content += "---\n"
-  content += `date: ${now.toISOString()}`
+  content += `date: ${now.toISOString()}\n`
   if (body.properties['like-of'])
-    content += `like_of: ${body.properties['like-of']}`
+    content += `like_of: ${body.properties['like-of']}\n`
   content += "---\n"
   if (body.properties['content']) {
     content += "\n"
