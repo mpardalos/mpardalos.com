@@ -133,7 +133,7 @@ async function handleCreate(body) {
 
   let content = ""
   content += "---\n"
-  content += `date: ${formatISODate(date)}`
+  content += `date: ${now.toISOString()}`
   if (body.properties['like-of'])
     content += `like_of: ${body.properties['like-of']}`
   content += "---\n"
