@@ -11,6 +11,7 @@
     <div class="link-list">
       <a href="/portfolio">Portfolio</a>
       <a href="/cv.pdf">CV</a>
+      <a href="/social">Social feed</a>
       <a href="/thesis.pdf">Master's Thesis</a>
       <a href="/fccm2_verified_resource_sharing.pdf">Verified Resource Sharing (conference paper)</a>
     </div>
@@ -34,10 +35,6 @@
   <section>
     <h2><a href="/blog">Blog</a></h2>
     {{ partial "list.html" (.Site.GetPage "/blog").Pages }}
-  </section>
-  <section>
-    <h2>Feed</h2>
-    {{ (.GetPage "feed").Render "content" }}
   </section>
 </div>
 {{ end }}
