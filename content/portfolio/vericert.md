@@ -10,4 +10,6 @@ Vericert is a formally verified, high level synthesis compiler for C. This means
 
 My work was to add an optimisation, *resource sharing*, making the compiler generate more compact hardware, and prove it correct. I am currently working on completing this proof as part of an Undergraduate Research Opportunity in Imperial College London.
 
+This work was published as a short paper in FCCM 2022. You can read the paper [here](/fccm22_verified_resource_sharing.pdf)
+
 You can read my master's thesis [here](/thesis.pdf)
