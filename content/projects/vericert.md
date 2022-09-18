@@ -1,7 +1,7 @@
 ---
 title: Vericert
 description: 
-weight: 1
+category: current
 ---
 
 For my Master's thesis I worked on implementing a *resource sharing* optimisation to the [Vericert High Level Synthesis](https://vericert.ymhg.org/) compiler.

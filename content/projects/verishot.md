@@ -2,7 +2,7 @@
 title: Verishot
 description: An easy to use, simplified, verilog emulator
 link: https://github.com/olly-larkin/hlp2020-verilog
-weight: 3
+category: former
 ---
 
 A Verilog emulator and visualiser for first-year EEE students. This project was part of my year 3 *High Level Programming* module.
