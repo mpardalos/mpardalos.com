@@ -8,12 +8,10 @@ html {
 
     --font-size-kilo: calc(var(--font-size-base) * var(--font-size-scale));
     --font-size-mega: calc(var(--font-size-kilo) * var(--font-size-scale));
-    --font-size-giga: calc(var(--font-size-mega) * var(--font-size-scale));
 }
 
-h1 { font-size: var(--font-size-giga)}
-h2 { font-size: var(--font-size-mega)}
-h3 { font-size: var(--font-size-kilo)}
+h1 { font-size: var(--font-size-mega); }
+h2 { font-size: var(--font-size-kilo); }
 
 header {
     border-bottom: 1px solid black;
