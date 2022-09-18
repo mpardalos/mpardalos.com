@@ -12,6 +12,7 @@ html {
 
 h1 { font-size: var(--font-size-mega); }
 h2 { font-size: var(--font-size-kilo); }
+h3,h4,h5,h6 { font-siz: var(--font-size-kilo); }
 
 header {
     border-bottom: 1px solid black;
