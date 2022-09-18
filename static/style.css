@@ -34,15 +34,28 @@ body {
     }
 }
 
+.h-card {
+    display: grid;
+    grid-gap: 20px;
+    grid-template:
+        "name        name"
+        "description links"
+        / 2fr 1fr
+}
+
+.h-card .p-name {
+    grid-area: name;
+    font-size: 2rem;
+}
+.h-card .about-me {grid-area: description;}
+.h-card .contact {grid-area: links;}
+.h-card .contact .contact-entry { display: block; }
+
+
 .section-heading {
     font-size: 2rem;
     margin-bottom: 20px;
     display: block;
-}
-
-#my-name {
-    text-decoration: none;
-    color: black;
 }
 
 .page-external-link {
@@ -67,10 +80,6 @@ h1 {
 .draft:before {
     content: "DRAFT"
     background: red;
-}
-
-.about-blurb {
-    text-align: justified;
 }
 
 h2 { display: flex; }

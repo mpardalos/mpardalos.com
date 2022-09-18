@@ -1,10 +1,20 @@
 {{ define "body" }}
 <div class="home-content">
-  <section class="about-blurb">
-    <p>
+  <section class="h-card">
+    <span class="p-name">
+      <span class="p-given-name">Michalis</span>
+      <span class="p-family-name">Pardalos</span>
+    </span>
+    <div class="about-me">
       Hi there! I'm Michalis. This is my personal website. I am a PhD student,
       working at the intersection of formal methods and hardware design.
-    </p>
+    </div>
+    <div class="contact">
+      <span class="contact-entry">Email: <a class="u-url" rel="me" href="mailto:me@mpardalos.xyz">me@mpardalos.xyz</a></span>
+      <span class="contact-entry">Github: <a class="u-url" rel="me" href="https://github.com/mpardalos">mpardalos</a></span>
+      <span class="contact-entry">Gitlab: <a class="u-url" rel="me" href="https://gitlab.com/michalis_pardalos">michalis_pardalos</a></span>
+      <span class="contact-entry">Instagram: <a class="u-url" rel="me" href="https://instagram.com/mpgrphoto">mpgrphoto</a></span>
+    </div>
   </section>
   <section>
     <h2>Links</h2>
@@ -14,14 +24,6 @@
       <a href="/social">Social feed</a>
       <a href="/thesis.pdf">Master's Thesis</a>
       <a href="/fccm2_verified_resource_sharing.pdf">Verified Resource Sharing (conference paper)</a>
-    </div>
-  </section>
-  <section>
-    <h2>On other platforms</h2>
-    <div class="link-list">
-      <a rel="me" href="https://github.com/mpardalos">Github</a>
-      <a rel="me" href="https://gitlab.com/michalis_pardalos">Gitlab (alternative code hosting)</a>
-      <a rel="me" href="https://instagram.com/mpgrphoto">Instagram (photography)</a>
     </div>
   </section>
   <section>
