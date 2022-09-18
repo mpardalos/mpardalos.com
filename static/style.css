@@ -5,16 +5,18 @@ header {
     padding-bottom: 5px;
     margin-bottom: 10px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-
     font-family: monospace;
     font-size: 2rem;
 }
 
 nav {
     font-size: 1.4rem;
+
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0.7rem;
+    align-items: baseline;
+
 }
 
 body {
