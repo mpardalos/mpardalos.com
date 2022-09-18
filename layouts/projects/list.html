@@ -1,9 +1,9 @@
 {{ define "body" }}
-<h1>Portfolio</h1>
+<h1>{{ .Title }}</h1>
 {{ range .Data.Pages }}
-<div class="portfolio-item">
+<section class="portfolio-item">
   <h2>{{.Title}}</h2>
   {{ .Content }}
-</div>
+</section>
 {{ end }}
 {{ end }}

@@ -1,3 +1,0 @@
----
-title: Experience and Projects
----
