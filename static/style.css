@@ -70,6 +70,8 @@ body {
 
 .h-card .p-name {
     grid-area: name;
+    font-size: var(--font-size-mega);
+    text-align: center;
 }
 .h-card .about-me {grid-area: description;}
 .h-card .contact {grid-area: links;}
