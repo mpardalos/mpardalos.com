@@ -1,10 +1,13 @@
 html {
-    --font-size-micro: 0.563rem;
-    --font-size-milli: 0.750rem;
     --font-size-base: 1rem;
-    --font-size-kilo: 1.333rem;
-    --font-size-mega: 1.777rem;
-    --font-size-giga: 2.369rem;
+    --font-size-scale: 1.618;
+
+    --font-size-milli: calc(var(--font-size-base) / var(--font-size-scale));
+    --font-size-micro: calc(var(--font-size-milli) / var(--font-size-scale));
+
+    --font-size-kilo: calc(var(--font-size-base) * var(--font-size-scale));
+    --font-size-mega: calc(var(--font-size-kilo) * var(--font-size-scale));
+    --font-size-giga: calc(var(--font-size-mega) * var(--font-size-scale));
 }
 
 h1 { font-size: var(--font-size-giga)}
