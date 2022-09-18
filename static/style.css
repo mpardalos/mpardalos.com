@@ -38,9 +38,21 @@ body {
     display: grid;
     grid-gap: 20px;
     grid-template:
-        "name        name"
-        "description links"
-        / 2fr 1fr
+        "name"
+        "description"
+        "links"
+}
+
+@media screen and (min-width: 700px) {
+    .h-card {
+        display: grid;
+        grid-gap: 20px;
+        grid-template:
+            "name        name"
+            "description links"
+            / 2fr 1fr
+    }
+
 }
 
 .h-card .p-name {
