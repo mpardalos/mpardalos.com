@@ -64,13 +64,6 @@ body {
 .h-card .contact .contact-entry { display: flex; justify-content: space-between; }
 .h-card .contact .contact-entry { text-align: right; }
 
-
-.section-heading {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    display: block;
-}
-
 .page-external-link {
     display: block;
     font-size: 1.5rem;
