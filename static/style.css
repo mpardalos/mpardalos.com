@@ -1,9 +1,10 @@
 html {
     --font-size-base: 1rem;
     --font-size-scale: 1.618;
+    --font-size-scale-down: 1.272;
 
-    --font-size-milli: calc(var(--font-size-base) / var(--font-size-scale));
-    --font-size-micro: calc(var(--font-size-milli) / var(--font-size-scale));
+    --font-size-milli: calc(var(--font-size-base) / var(--font-size-scale-down));
+    --font-size-micro: calc(var(--font-size-milli) / var(--font-size-scale-down));
 
     --font-size-kilo: calc(var(--font-size-base) * var(--font-size-scale));
     --font-size-mega: calc(var(--font-size-kilo) * var(--font-size-scale));
