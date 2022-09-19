@@ -10,6 +10,7 @@ html {
     --font-size-mega: calc(var(--font-size-kilo) * var(--font-size-scale));
 
     line-height: 1.5;
+    font-size: var(--font-size-base);
 }
 
 h1 { font-size: var(--font-size-mega); }
