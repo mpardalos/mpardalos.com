@@ -127,7 +127,7 @@ async function handleCreate(body) {
     const safeTitle = body.properties.title.toLowerCase().replace(' ', '-');
     slug += `-${safeTitle}`;
   }
-  const directory = 'content/feed';
+  const directory = 'content/social';
   const filename = `${slug}.md`;
   const path = `${directory}/${filename}`;
 
@@ -145,7 +145,7 @@ async function handleCreate(body) {
   const github_response = await githubCreateFile(path, content)
   console.log(`GITHUB RESPONSE: ${github_response}`);
 
-  return CREATED(`${HOSTNAME}/feed/${slug}`);
+  return CREATED(`${HOSTNAME}/social/${slug}`);
 
 }
 
