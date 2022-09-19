@@ -8,6 +8,8 @@ html {
 
     --font-size-kilo: calc(var(--font-size-base) * var(--font-size-scale));
     --font-size-mega: calc(var(--font-size-kilo) * var(--font-size-scale));
+
+    line-height: 1.5;
 }
 
 h1 { font-size: var(--font-size-mega); }
