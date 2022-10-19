@@ -2,7 +2,7 @@ const https = require('https');
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
-const HOSTNAME = "https://mpardalos.xyz"
+const HOSTNAME = "https://mpardalos.com"
 
 exports.handler = logged(async function(event) {
   const authHeader = event.headers['authorization'];
@@ -173,7 +173,7 @@ async function githubCreateFile(path, content) {
   const base64_content = Buffer.from(content).toString('base64');
   return await put({
     hostname: 'api.github.com',
-    path: `/repos/mpardalos/mpardalos.xyz/contents/${path}`,
+    path: `/repos/mpardalos/mpardalos.com/contents/${path}`,
     headers: {
       'User-Agent': 'node', // Github API requires a user-agent header
       'Accept': 'application/json',
