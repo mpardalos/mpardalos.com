@@ -224,3 +224,6 @@ blockquote {
     display: block;
     margin-bottom: 10px;
 }
+
+/* Keep long code samples within page width, and add a scrollbar */
+pre { overflow-x: scroll; }
