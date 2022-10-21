@@ -28,8 +28,8 @@ header {
 nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.7rem;
+    justify-content: space-around;
+    gap: 2ch;
     align-items: baseline;
     font-size: var(--font-size-base);
 }
