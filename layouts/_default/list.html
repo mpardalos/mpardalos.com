@@ -1,4 +1,5 @@
 {{ define "body" }}
   <h1>{{ .Title }}</h1>
+	{{ .Content }}
   {{ partial "list.html" .Data.Pages }}
 {{ end }}
