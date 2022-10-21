@@ -225,6 +225,11 @@ blockquote {
     margin-bottom: 10px;
 }
 
+pre {
+    padding: 10px;
+    border-radius: 5px;
+}
+
 /* Keep long code samples within page width, and add a scrollbar */
 pre { overflow-x: scroll; }
 
