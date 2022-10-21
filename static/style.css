@@ -215,3 +215,12 @@ blockquote {
     margin-left: 7px;
     padding: 1px 10px;
 }
+
+.brain-list {
+    columns: 15ch 3;
+}
+
+.brain-entry {
+    display: block;
+    margin-bottom: 10px;
+}

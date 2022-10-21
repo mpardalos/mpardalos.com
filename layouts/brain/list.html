@@ -1,0 +1,9 @@
+{{ define "body" }}
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <main class="brain-list">
+	{{ range .Data.Pages }}
+	<a class="brain-entry" href="{{.RelPermalink}}">{{ .Title }}</a>
+	{{ end }}
+  </main>
+{{ end }}
