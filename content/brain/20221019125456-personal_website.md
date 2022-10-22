@@ -73,18 +73,43 @@ We then have to implement the new shortcode in hugo.
 ```
 
 
-### Tying everything together {#tying-everything-together}
+### Publishing a single note {#publishing-a-single-note}
 
 The following function exports the current note, tags it as published, and jumps to the magit buffer of the website so you can commit and push the changes.
 
 ```elisp
 (defun mpardalos/org-roam-hugo-publish-and-magit ()
-    "Publish the current org-roam note and then jump to the magit buffer for your website"
-    (interactive)
-    (org-roam-tag-add '("publish"))
-    (org-hugo-export-wim-to-md)
-    (magit-status org-hugo-base-dir))
+  "Publish the current org-roam note and then jump to the magit buffer for your website"
+  (interactive)
+  (org-roam-tag-add '("publish"))
+  (org-hugo-export-wim-to-md)
+  (magit-status org-hugo-base-dir))
 ```
+
+
+### Adding a graph {#adding-a-graph}
+
+Copying from [My Org Roam Notes Workflow - Hugo Cisneros](https://hugocisneros.com/blog/my-org-roam-notes-workflow/). There is a node graph on [Notes - Hugo Cisneros](https://hugocisneros.com/notes/).
+
+Add the following into the notes page:
+
+```html
+<script defer="" src="https://d3js.org/d3.v7.min.js"></script>
+<script defer="" src="/js/draw_graph.js"></script>
+<svg id="note-graph" class="rounded-lg">
+  <defs>
+    <filter x="0" y="0" width="1" height="1" id="solid">
+      <feFlood flood-color="#f7f7f7" flood-opacity=".9"></feFlood>
+      <feComposite in="SourceGraphic" operator="xor"></feComposite>
+    </filter>
+  </defs>
+  <rect id="base_rect" width="100%" height="100%" class="fill-slate-100 dark:fill-neutral-700"></rect>
+</svg>
+```
+
+`js/draw_graph.js` is a modified version of the script at <https://hugocisneros.com/js/graph.js>.
+
+See also {{< optionalref "D3.js" "20221022204138-d3_js.md" >}}
 
 
 ### Resources {#resources}
