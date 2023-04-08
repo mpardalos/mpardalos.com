@@ -1,7 +1,7 @@
 ---
 title: Kingdom Hearts Final Mix
 date: 2022-09-14
-medium: Game
+type: Game
 ---
 
 I am currently in the process of playing through the *entire* Kingdom Hearts franchise with my partner. I had never played a single Kingdom Hearts game before this day, so this was my introduction to the series... I don't think it was a very good one.

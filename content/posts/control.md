@@ -1,7 +1,7 @@
 ---
 title: Control
 date: 2022-09-11
-medium: Game
+type: Game
 ---
 
 I only started playing this game recently, but I am intrigued --- being mostly drawn in by the game's plot. There is some MK-Ultra-esque government conspiracy around some sort of paranormal alternate universe. It's too early to have figured out the details, but the way the game progressively reveals information has caught my interest. 

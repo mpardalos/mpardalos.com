@@ -25,24 +25,31 @@
 	<ul class="page-list">
 		<li>
 			<article>
-			⏰ <a href="/now">What I'm doing right now</a>
+				⏰ <a href="/now">What I'm doing right now</a>
 			</article>
 		</li>
 		<li>
 			<article>
-			🔧 <a href="/using">The tools I like to use</a>
+				🔧 <a href="/using">The tools I like to use</a>
 			</article>
 		</li>
 		<li>
 			<article>
-			📷 (🚧) Photography
+				📷 (🚧) Photography
 			</article>
 		</li>
 		<hr width="33%"/>
-		{{ range (.Site.GetPage "/blog").Pages }}
+		{{ range (.Site.GetPage "/posts").Pages }}
 		<li>
 			<article class="page">
-			📰 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+				{{ if (eq .Type "Game") }}
+				🎮
+				{{ else if (eq .Type "Movie") }}
+				🎥
+				{{ else }}
+				📰
+				{{ end }}
+				<a href="{{ .RelPermalink }}">{{ .Title }}</a>
 			</article>
 		</li>
 		{{ end }}

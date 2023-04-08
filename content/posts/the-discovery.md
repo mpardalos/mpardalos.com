@@ -1,7 +1,7 @@
 ---
 title: The Discovery
 date: 2022-08-28
-medium: Movie
+type: Movie
 ---
 
 This was certainly... interesting.
