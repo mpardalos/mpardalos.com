@@ -1,8 +1,24 @@
 {{ define "body" }}
 <article>
-    {{ if .Title }}
-    <h1>{{.Title}}</h1>
-    {{ end }}
-    {{ .Content }}
+	<header>
+		{{ if .Title }}
+		<h1>{{.Title}}</h1>
+		{{ end }}
+		{{ if (or (isset .Params "date") (gt .ReadingTime 1)) }}
+		<div class="article-details">
+			{{ if (isset .Params "date")}}
+			<span class="date">📅 {{ .Date.Format "Monday, January 2, 2006"}}</span>
+			{{ end }}
+			{{ if (gt .ReadingTime 1)}}
+			<span class="reading-time">🕑 {{ .ReadingTime }} {{ if (gt .ReadingTime 1) }}minutes{{ else }}minute{{ end }}</span>
+			{{ end }}
+		</div>
+		{{ end }}
+	</header>
+	<span class="article-begin-marker"></span>
+	{{ .Content }}
+	{{ if .Params.external_link }}
+	<a class="page-external-link" href="{{.Params.external_link}}">External Link</a>
+	{{ end }}
 </article>
 {{ end }}

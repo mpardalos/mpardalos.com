@@ -23,11 +23,37 @@ a:visited {color: var(--visited-link-color);}
 body {
     max-width: 800px;
     margin: auto;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-family: sans-serif;
     background-color: var(--bg-color);
     color: var(--fg-color);
+}
+
+nav {
+    font-size: 1.2rem;
+    text-align: left;
+    /* border-bottom: 1px solid var(--fg-color); */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.article-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article-begin-marker {
+    display: block;
+    border-bottom: 1px solid var(--fg-color);
+    margin-top: 1ch;
+    margin-bottom: 1ch;
 }
 
 .side-by-side {

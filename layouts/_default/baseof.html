@@ -13,6 +13,11 @@
         {{ block "head" . }}{{ end }}
     </head>
     <body>
+		{{ block "nav" . }}
+		<nav>
+			<a class="home-link"href="/">🏠 Back to top</a>
+		</nav>
+		{{ end }}
         {{ block "body" . }}{{ end }}
     </body>
 </html>

@@ -1,5 +1,19 @@
 {{ define "body" }}
   <h1>{{ .Title }}</h1>
 	{{ .Content }}
-  {{ partial "list.html" .Data.Pages }}
+	<ul class="post-list">
+		{{ range .Pages }}
+		<li>
+			<a href="{{.RelPermalink}}" {{ if .Draft }}class="draft"{{end}}>
+				{{ .Title }}
+			</a>
+			<span class="details">
+				{{ if .Params.external_link }}
+				<span class="external-marker">external</span>
+				{{ end }}
+				<span class="date"> {{ .Date.Format "Jan 2, 2006" }} </span>
+			</span>
+		</li>
+		{{ end }}
+	</ul>
 {{ end }}
