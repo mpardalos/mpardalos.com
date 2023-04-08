@@ -105,13 +105,6 @@ section>h2 {
     text-align: right;
 }
 
-menu {
-    padding-left: 0px;
-    display: flex;
-    justify-content: space-between;
-    column-gap: 3ch;
-}
-
-menu>li {
-    list-style: none;
+.page-list article {
+    margin-top: 10px;
 }

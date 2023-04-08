@@ -16,23 +16,21 @@
 			<circle cx="32" cy="22" r="10" fill="#555555" />
 		</svg>
 	</div>
-	<menu>
-		<li>
-			⏰ <a href="/now">What I'm doing right now</a>
-		</li>
-		<li>
-			🔧 <a href="/using">The tools I like to use</a>
-		</li>
-		<li>
-			📷 (🚧) Photography
-		</li>
-	</menu>
 </section>
 <section>
 	<h2>Pages</h2>
 	<p>I don't quite keep a blog — This is a list of pages that may or may not get updated over time.</p>
 	<hr width="33%"/>
 	<div class="page-list">
+		<article>
+			⏰ <a href="/now">What I'm doing right now</a>
+		</article>
+		<article>
+			🔧 <a href="/using">The tools I like to use</a>
+		</article>
+		<article>
+			📷 (🚧) Photography
+		</article>
 		{{ range (.Site.GetPage "/blog").Pages }}
 		<article class="page">
 			📰 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
