@@ -21,23 +21,32 @@
 	<h2>Pages</h2>
 	<p>I don't quite keep a blog — This is a list of pages that may or may not get updated over time.</p>
 	<hr width="33%"/>
-	<div class="page-list">
-		<article>
+	<!-- This is a ul, even though I've disabled bullets, so that it renders better in text-mode browsers (lynx) -->
+	<ul class="page-list">
+		<li>
+			<article>
 			⏰ <a href="/now">What I'm doing right now</a>
-		</article>
-		<article>
+			</article>
+		</li>
+		<li>
+			<article>
 			🔧 <a href="/using">The tools I like to use</a>
-		</article>
-		<article>
+			</article>
+		</li>
+		<li>
+			<article>
 			📷 (🚧) Photography
-		</article>
+			</article>
+		</li>
 		<hr width="33%"/>
 		{{ range (.Site.GetPage "/blog").Pages }}
-		<article class="page">
+		<li>
+			<article class="page">
 			📰 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-		</article>
+			</article>
+		</li>
 		{{ end }}
-	</div>
+	</ul>
 </section>
 <section>
 	<h2>Feed</h2>

@@ -105,6 +105,7 @@ section>h2 {
     text-align: right;
 }
 
-.page-list article {
-    margin-top: 10px;
+.page-list {
+    list-style: none;
+    padding-left: 0;
 }
