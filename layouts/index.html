@@ -1,32 +1,56 @@
 {{ define "body" }}
-<div class="home-content">
-  <section class="h-card">
-    <span class="p-name">
-      <span class="p-given-name">Michalis</span>
-      <span class="p-family-name">Pardalos</span>
-    </span>
-    <div class="about-me">
-      Hi there! I'm Michalis. This is my personal website. I am a PhD student,
-      working at the intersection of formal methods and hardware design.
-    </div>
-    <div class="contact">
-      <span class="contact-entry">Email <a class="u-url" rel="me" href="mailto:me@mpardalos.com">me@mpardalos.com</a></span>
-      <span class="contact-entry">Github <a class="u-url" rel="me" href="https://github.com/mpardalos">mpardalos</a></span>
-      <span class="contact-entry">Gitlab <a class="u-url" rel="me" href="https://gitlab.com/michalis_pardalos">michalis_pardalos</a></span>
-      <span class="contact-entry">Instagram <a class="u-url" rel="me" href="https://instagram.com/mpgrphoto">mpgrphoto</a></span>
-    </div>
-  </section>
-  <section>
-    <h2><a href="/media">Media</a></h2>
-    <p>
-      Movies, shows, music, games. I do my best to hide spoilers.
-      <span class="spoiler">Like this</span>
-    </p>
-    {{ partial "media-list.html" (.Site.GetPage "/media").Pages }}
-  </section>
-  <section>
-    <h2><a href="/blog">Blog</a></h2>
-    {{ partial "list.html" (.Site.GetPage "/blog").Pages }}
-  </section>
-</div>
+<section>
+	<div class="side-by-side">
+		<p>
+			Hello! My name is Michalis. I am a PhD student in Electrical and
+			Electronic Engineering in Imperial College London, in the Circuits and
+			Systems Group.
+		</p>
+		<!-- TODO: Include an actual picture -->
+		<svg width="256px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="32" cy="32" r="28" fill="#DDDDDD" />
+			<polygon points="32,20 50,50 14,50" fill="#555555" />
+			<circle cx="32" cy="22" r="10" fill="#555555" />
+		</svg>
+	</div>
+	<menu>
+		<li>
+			⏰ <a href="/now">What I'm doing right now</a>
+		</li>
+		<li>
+			🔧 <a href="/using">The tools I like to use</a>
+		</li>
+		<li>
+			📷 (🚧) Photography
+		</li>
+	</menu>
+</section>
+<section>
+	<h2>Pages</h2>
+	<p>I don't quite keep a blog — This is a list of pages that may or may not get updated over time.</p>
+	<hr width="33%"/>
+	<div class="page-list">
+		{{ range (.Site.GetPage "/blog").Pages }}
+		<article class="page">
+			📰 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+		</article>
+		{{ end }}
+	</div>
+</section>
+<section>
+	<h2>Feed</h2>
+	{{ range (.Site.GetPage "/social").Pages }}
+	<article class="h-entry">
+		{{ with .Params.like_of }}
+		❤️ <a class="u-like-of" href="{{ . }}">{{ . }}</a>
+		{{ end }}
+		{{ with .Content }}
+		<div class="e-content">
+			{{ . }}
+		</div>
+		{{ end }}
+		<time class="dt-published" datetime="{{.Date}}">{{ .Date.Format "2 Jan 2006" }}</time>
+	</article>
+	{{ end }}
+</section>
 {{ end }}
