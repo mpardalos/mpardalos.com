@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {{ block "head" . }}{{ end }}
     </head>
-    <body>
+    <body {{ block "body-properties" . }}{{ end }}>
 		{{ block "nav" . }}
 		<nav>
 			<a class="home-link"href="/">🏠 Back to top</a>

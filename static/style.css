@@ -30,6 +30,10 @@ body {
     color: var(--fg-color);
 }
 
+body.image-board-page {
+    max-width: 1200px;
+}
+
 nav {
     font-size: 1.2rem;
     text-align: left;
@@ -110,3 +114,27 @@ section>h2 {
     list-style: none;
     padding-left: 0;
 }
+
+.image-board {
+    line-height: 0;
+}
+
+@media (width >= 1000px) {
+    .image-board {
+        columns: 2;
+        column-gap: 10px;
+    }
+}
+
+.image-board-item {
+    line-height: 0;
+    margin: 0;
+}
+
+.image-board-image {
+    padding-bottom: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin: 0;
+};

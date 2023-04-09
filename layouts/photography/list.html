@@ -1,0 +1,10 @@
+{{ define "body-properties"}}class="image-board-page"{{ end }}
+{{ define "body" }}
+<main class="image-board">
+{{ range .Resources }}
+	<a href="{{.RelPermalink}}" class="image-board-item">
+		<img class="image-board-image" src="{{ .RelPermalink }}"/>
+	</a>
+{{ end }}
+</main>
+{{ end }}
