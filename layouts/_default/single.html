@@ -9,7 +9,7 @@
 			{{ if (isset .Params "date")}}
 			<span class="date">📅 {{ .Date.Format "Monday, January 2, 2006"}}</span>
 			{{ end }}
-			{{ if (gt .ReadingTime 1)}}
+			{{ if (ge .ReadingTime 5)}}
 			<span class="reading-time">🕑 {{ .ReadingTime }} {{ if (gt .ReadingTime 1) }}minutes{{ else }}minute{{ end }}</span>
 			{{ end }}
 		</div>
