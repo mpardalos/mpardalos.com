@@ -1,7 +1,7 @@
 {{ define "body-properties"}}class="image-board-page"{{ end }}
 {{ define "body" }}
 <main class="image-board">
-{{ range sort (.Resources.Match "*_1x.webp") "Name" "desc"}}
+{{ range sort .Resources "Name" "desc"}}
 	<div class="image-board-item">
 		<img
 			class="image-board-image"
