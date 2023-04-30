@@ -135,6 +135,7 @@ section>h2 {
     padding-bottom: 10px;
     width: 100%;
     height: auto;
-    object-fit: cover;
+    max-height: 80vh;
+    object-fit: contain;
     margin: 0;
 };

@@ -1,8 +1,16 @@
 {{ define "body-properties"}}class="image-board-page"{{ end }}
 {{ define "body" }}
 <main class="image-board">
-{{ range .Resources.Match "*_1x.webp" }}
-	<img class="image-board-image" src="{{ .RelPermalink }}"/>
+{{ range sort (.Resources.Match "*_1x.webp") "Name" "desc"}}
+	<div class="image-board-item">
+		<img
+			class="image-board-image"
+				   src="{{ .RelPermalink }}"
+			width="{{.Width}}"
+			height="{{.Height}}"
+			loading="lazy"
+		/>
+	</div>
 {{ end }}
 </main>
 {{ end }}
