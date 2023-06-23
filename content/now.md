@@ -1,13 +1,13 @@
 ---
-title: Now
+title: What am I doing?
 ---
 
-## Work
+## PhD
 
-I am impatiently waiting to start a PhD in the Electrical Engineering
-department in Imperial College London, under Dr John Wickerson.
+I am currently in the first year of my PhD in Electrical and Electronic Engineering at Imperial College London.
 
-While the topic has not been decided yet, it will most likely be at the
-intersection of hardware design and formal methods, following from my
-previous work on \"Resource sharing for verified high-level synthesis\"
-([DOI](https://dx.doi.org/10.1109/FCCM53951.2022.9786208)).
+As part of my PhD I am currently working on a project to find bugs in Formal Equivalence Checkers for hardware designs. I am planning on writing about this project once I have made sufficient progress.
+
+## Side-projects
+
+My focus is currently on this website. I have grown really interested in the ideas of the [IndieWeb](https://indieweb.org) community, as well as Digital Gardens. What you see here is heavily inspired by both of these concepts. 
