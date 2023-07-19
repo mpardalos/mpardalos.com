@@ -138,4 +138,9 @@ section>h2 {
     max-height: 80vh;
     object-fit: contain;
     margin: 0;
-};
+}
+
+.profile-picture {
+    width: 192px;
+    border-radius: 50%;
+}
