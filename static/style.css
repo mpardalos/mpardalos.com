@@ -115,8 +115,15 @@ section>h2 {
     padding-left: 0;
 }
 
+.image-board {
+    margin: 0 auto;
+}
+
+.image-board-sizer,
 .image-board-image {
-    width: 30%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: 45%;
+}
+
+.image-board-image {
+    margin-bottom: 10px;
 }
