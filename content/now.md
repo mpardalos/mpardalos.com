@@ -18,3 +18,5 @@ I will be attending in [POPL 2024](https://popl24.sigplan.org/).
 My focus is currently on this website. I have grown really interested in the ideas of the [IndieWeb](https://indieweb.org) community, as well as Digital Gardens. This website is inspired by both of these concepts. 
 
 I also spend quite a bit of time working on my [homelab](https://www.reddit.com/r/homelab/), trying out different software 
+
+You will also often find me walking around London with my camera, and you can find some of my photos on my [photography page](/photography)
