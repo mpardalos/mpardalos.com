@@ -19,4 +19,6 @@ My focus is currently on this website. I have grown really interested in the ide
 
 I also spend quite a bit of time working on my [homelab](https://www.reddit.com/r/homelab/), trying out different software 
 
+I recently did [Advent of Code 2023](adventofcode.com/2023), but did not manage to complete all days in time. I am slowly working through the remaining ones.
+
 You will also often find me walking around London with my camera, and you can find some of my photos on my [photography page](/photography)
