@@ -61,11 +61,6 @@ h1 {
     margin-bottom: 1ch;
 }
 
-.side-by-side {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .short-post {
     display: flex;
@@ -87,6 +82,19 @@ section>h2 {
     width: min-content;
     padding-left: 0.5ch;
     padding-right: 0.5ch;
+}
+
+.h-card {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.h-card .u-photo {
+    border-radius: 50%;
+    width: auto;
+    max-width: 200px;
 }
 
 .h-entry {
