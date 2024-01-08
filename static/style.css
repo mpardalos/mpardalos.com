@@ -30,10 +30,6 @@ body {
     color: var(--fg-color);
 }
 
-body.image-board-page {
-    max-width: 100%;
-}
-
 nav {
     font-size: 1.2rem;
     text-align: left;
@@ -123,15 +119,23 @@ section>h2 {
     padding-left: 0;
 }
 
+/** Image board **/
+
 .image-board {
     margin: 0 auto;
+    max-width: 1200px;
 }
 
-.image-board-sizer,
-.image-board-image {
-    width: 45%;
+.image-board-container {
+    background: white;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 30px;
+    width: 100%;
 }
 
 .image-board-image {
-    margin-bottom: 10px;
+    display: block;
+    margin: auto;
+    width: 100%;
 }

@@ -1,30 +1,18 @@
 {{ define "head" }}
-<script src="/masonry.pkgd.min.js"></script>
-<script src="/imagesloaded.pkgd.min.js"></script>
 {{ end }}
 
 {{ define "body-properties"}}class="image-board-page"{{ end }}
 
 {{ define "body" }}
 <main class="image-board" >
-	<div class="image-board-sizer"></div>
-{{ range sort .Resources "Name" "desc"}}
-	<img
-		class="image-board-image"
-		src="{{ .RelPermalink }}"
-		loading="lazy"
-	/>
-{{ end }}
+	{{ range sort .Resources "Name" "desc"}}
+	<div class="image-board-container">
+		<img
+			class="image-board-image"
+			src="{{ .RelPermalink }}"
+			loading="lazy"
+		/>
+	</div>
+	{{ end }}
 </main>
-<script>
-var masonry = new Masonry( '.image-board', {
-	"itemSelector": ".image-board-image",
-	"columnWidth": ".image-board-sizer",
-	"gutter": 10,
-	"fitWidth": true
-});
-imagesLoaded(document.querySelector(".image-board"), () => {
-	masonry.layout();
-})
-</script>
 {{ end }}
