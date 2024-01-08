@@ -1,19 +1,18 @@
-html {
-    --link-color: #FF69B4;
-}
 @media(prefers-color-scheme: light) {
     html {
-        --bg-color: rgb(90%, 90%, 90%);
-        --fg-color: rgb(5%, 5%, 5%);
-        --visited-link-color: #cc0066;
+        --bg-color: #F9F5D7;
+        --fg-color: #282828;
+        --link-color: #D65D0E;
+        --visited-link-color: #AF3A03;
     }
 }
 
 @media(prefers-color-scheme: dark) {
     html {
-        --bg-color: rgb(5%, 5%, 5%);
-        --fg-color: rgb(90%, 90%, 90%);
-        --visited-link-color: #cc0066;
+        --bg-color: #282828;
+        --fg-color: #EBDBB2;
+        --link-color: #FE8019;
+        --visited-link-color: #D65D0E;
     }
 }
 
