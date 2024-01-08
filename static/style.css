@@ -118,6 +118,13 @@ section>h2 {
     padding-left: 0;
 }
 
+/** Publications **/
+
+.publication-list {
+    margin: 0;
+    padding-left: 1em;
+}
+
 /** Image board **/
 
 .image-board {
