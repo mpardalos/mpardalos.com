@@ -42,7 +42,7 @@ initial skeleton for the project.
 
 With that said, the file structure for this blog looks like this:
 
-![File structure for the blog](/images/blog_file_structure.png)
+![File structure for the blog](blog_file_structure.png)
 
 * `content/` contains all of the actual, well, content of the site. That
   includes articles and images, as well as anything else I might want to upload
