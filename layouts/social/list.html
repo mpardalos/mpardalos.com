@@ -1,0 +1,18 @@
+{{ define "body" }}
+<section>
+	<h2>Feed</h2>
+	{{ range .Pages }}
+	<article class="h-entry">
+		{{ with .Params.like_of }}
+		❤️ <a class="u-like-of" href="{{ . }}">{{ . }}</a>
+		{{ end }}
+		{{ with .Content }}
+		<div class="e-content">
+			{{ . }}
+		</div>
+		{{ end }}
+		<time class="dt-published" datetime="{{.Date}}">{{ .Date.Format "2 Jan 2006" }}</time>
+	</article>
+	{{ end }}
+</section>
+{{ end }}
