@@ -9,3 +9,6 @@ command = "hugo --minify --buildFuture -b $DEPLOY_PRIME_URL"
 from = "/micropub"
 to = "/.netlify/functions/micropub"
 status = 200
+
+[dev]
+framework = "hugo"
