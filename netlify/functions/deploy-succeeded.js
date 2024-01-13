@@ -1,7 +1,5 @@
 import telegram from './lib/telegram';
 
-const SITE_URL = 'https://odin.elf-goblin.ts.net';
-const WEBHOOK_URL = `${SITE_URL}/.netlify/functions/telegram-bot`
 const BOT_SECRET_TOKEN = process.env.BOT_SECRET_TOKEN;
 
 export default async (req, context) => {
@@ -9,6 +7,8 @@ export default async (req, context) => {
   console.log(`getMe: ${JSON.stringify(me)}`);
   console.log('---')
 
+  const SITE_URL = process.env.BOT_SITE_URL || context.site.url;
+  const WEBHOOK_URL = `${SITE_URL}/.netlify/functions/telegram-bot`
   console.log(`Setting webhook to ${WEBHOOK_URL}`)
   const webhook_response = await telegram('setWebhook', {
     url: WEBHOOK_URL,
