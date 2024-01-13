@@ -1,0 +1,15 @@
+{
+  "name": "mpardalos.com",
+  "version": "1.0.0",
+  "description": "Michalis Pardalos' personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michalis Pardalos",
+  "license": "MIT",
+  "devDependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
+}
