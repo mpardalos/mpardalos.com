@@ -1,10 +1,10 @@
-const https = require('https');
+import https from 'https';
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
 const HOSTNAME = "https://mpardalos.com"
 
-exports.handler = logged(async function(event) {
+export default async function(event) {
   const authHeader = event.headers['authorization'];
   if (!authHeader)
     return UNAUTHORIZED;
@@ -58,7 +58,7 @@ exports.handler = logged(async function(event) {
   }
 
   return INVALID_REQUEST("Not a POST or GET request");
-});
+};
 
 /// Validate the token and return its authorization scope. Returns an empty
 /// array if not authorized
@@ -237,18 +237,6 @@ function json_parse_or_null(text) {
     return JSON.parse(text);
   } catch (SyntaxError) {
     return null;
-  }
-}
-
-function logged(fn) {
-  return async (...args) => {
-    console.log(`REQUEST
----
-${JSON.stringify(args[0])}
----`);
-    const res = await fn(...args);
-    console.log(`RESPONSE\n---\n${res}\n---`);
-    return res;
   }
 }
 
