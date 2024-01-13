@@ -11,7 +11,7 @@ export default async (method, args) => {
     : await fetch(`${BOT_API_URL}/${method}`)
   const data = await response.json();
   if (!data.ok) {
-    throw `Telegram bot API error: ${data.description}`
+    throw new Error(`Telegram bot API error: ${data.description}`);
   }
   return data.result;
 }
