@@ -1,5 +1,7 @@
 import telegram from './lib/telegram';
 import * as linkify from 'linkifyjs';
+import { titleOfUrl } from './lib/utils';
+import * as cheerio from 'cheerio';
 
 export default async (req, context) => {
   console.log("telegram-bot request");
@@ -19,11 +21,13 @@ export default async (req, context) => {
         text: `Served from ${context.site.url}. WIP, not actually publishing anything`,
       });
     } else {
-      const links = linkify.find(data.message.text, 'url')
-      for (const link of links) {
+      const urls = linkify.find(data.message.text, 'url')
+      for (const url of urls) {
+        const title = await titleOfUrl(url.href);
         await telegram('sendMessage', {
           chat_id: data.message.chat.id,
-          text: `Found link: ${link.href}. What do you want to do?`,
+          text: `Found link: <a href="${url.href}">${title}</a>. What do you want to do?`,
+          parse_mode: 'HTML',
           reply_parameters: { message_id: data.message.message_id },
           reply_markup: {
             inline_keyboard: [
@@ -37,7 +41,7 @@ export default async (req, context) => {
         });
       }
 
-      if (links.length === 0) {
+      if (urls.length === 0) {
         await telegram('sendMessage', {
           chat_id: data.message.chat.id,
           reply_parameters: { message_id: data.message.message_id },
@@ -64,19 +68,24 @@ export default async (req, context) => {
         text: 'Message is inaccessible'
       })
     } else {
-      const link = linkify.find(data.callback_query.message.text, 'url')[0].href;
-      if (link) {
+      const link = data.callback_query.message.entities[0];
+      if (link && link.url) {
+        const url = link.url;
+        const title = await titleOfUrl(url);
         var message;
         switch (data.callback_query.data) {
-          case 'like': message = `❤️ Liked ${link}`; break;
-          case 'bookmark': message = `🔖 Bookmarked ${link}`; break;
-          default: message = `X No action on ${link} `; break;
+          case 'like': message = '❤️ Liked'; break;
+          case 'bookmark': message = '🔖 Bookmarked'; break;
+          default: message = 'X No action'; break;
         }
         await telegram('editMessageText', {
           chat_id: data.callback_query.message.chat.id,
           message_id: data.callback_query.message.message_id,
-          text: message,
+          text: message + ' <a href="' + url + '">' + title + '</a>',
+          parse_mode: 'HTML'
         });
+      } else {
+        console.log("Error: No link in originating message");
       }
     }
 
