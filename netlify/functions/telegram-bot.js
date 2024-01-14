@@ -16,20 +16,28 @@ export default async (req, context) => {
     const links = linkify.find(data.message.text, 'url')
     for (const link of links) {
       const target = link.href;
-      await telegram('sendMessage', {
-        chat_id: data.message.chat.id,
-        text: `Found link: ${target}. What do you want to do?`,
-        reply_parameters: { message_id: data.message.message_id },
-        reply_markup: {
-          inline_keyboard: [
-            [
-              { text: "Like", callback_data: JSON.stringify({ action: 'like', target }) },
-              { text: "Bookmark", callback_data: JSON.stringify({ action: 'bookmark', target }) },
-              { text: "Cancel", callback_data: JSON.stringify({ action: 'cancel', target }) },
+      if (JSON.stringify({ action: 'bookmark', target }).length > 64) {
+        await telegram('sendMessage', {
+          chat_id: data.message.chat.id,
+          text: 'Bot error. Link too long',
+          reply_parameters: { message_id: data.message.message_id },
+        });
+      } else {
+        await telegram('sendMessage', {
+          chat_id: data.message.chat.id,
+          text: `Found link: ${target}. What do you want to do?`,
+          reply_parameters: { message_id: data.message.message_id },
+          reply_markup: {
+            inline_keyboard: [
+              [
+                { text: "Like", callback_data: JSON.stringify({ action: 'like', target }) },
+                { text: "Bookmark", callback_data: JSON.stringify({ action: 'bookmark', target }) },
+                { text: "Cancel", callback_data: JSON.stringify({ action: 'cancel', target }) },
+              ]
             ]
-          ]
-        }
-      });
+          }
+        });
+      }
     }
     if (links.length === 0) {
       await telegram('sendMessage', {
