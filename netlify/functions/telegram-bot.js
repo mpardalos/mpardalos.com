@@ -4,7 +4,7 @@ import * as linkify from 'linkifyjs';
 export default async (req, context) => {
   console.log("telegram-bot request");
   const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
-  if (secret_token !== process.env.TELEGRAM_BOT_TOKEN) {
+  if (secret_token !== process.env.BOT_SECRET_TOKEN) {
     throw new Error("Invalid secret token");
   }
   const data = await req.json();
