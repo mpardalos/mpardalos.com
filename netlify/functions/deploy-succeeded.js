@@ -17,6 +17,10 @@ export default async (req, context) => {
   console.log(`Response: ${webhook_response}`);
   console.log('---')
 
+  telegram('setMyCommands', {
+    commands: [{ command: 'info', description: 'Get info about the bot' }]
+  })
+
   const webhook_info_response = await telegram('getWebhookInfo');
   console.log(`webhook info: ${JSON.stringify(webhook_info_response)}`);
   console.log('---')

@@ -13,44 +13,52 @@ export default async (req, context) => {
     console.log("Received message");
     console.log(data.message);
 
-    const links = linkify.find(data.message.text, 'url')
-    for (const link of links) {
-      const target = link.href;
-      if (JSON.stringify({ action: 'bookmark', target }).length > 64) {
-        await telegram('sendMessage', {
-          chat_id: data.message.chat.id,
-          text: 'Bot error. Link too long',
-          reply_parameters: { message_id: data.message.message_id },
-        });
-      } else {
-        await telegram('sendMessage', {
-          chat_id: data.message.chat.id,
-          text: `Found link: ${target}. What do you want to do?`,
-          reply_parameters: { message_id: data.message.message_id },
-          reply_markup: {
-            inline_keyboard: [
-              [
-                { text: "Like", callback_data: JSON.stringify({ action: 'like', target }) },
-                { text: "Bookmark", callback_data: JSON.stringify({ action: 'bookmark', target }) },
-                { text: "Cancel", callback_data: JSON.stringify({ action: 'cancel', target }) },
+    if (data.message.text == '/info') {
+      telegram('sendMessage', {
+        chat_id: data.message.chat.id,
+        text: `Served from ${context.site.url}`,
+      });
+    } else {
+      const links = linkify.find(data.message.text, 'url')
+      for (const link of links) {
+        const target = link.href;
+        if (JSON.stringify({ action: 'bookmark', target }).length > 64) {
+          await telegram('sendMessage', {
+            chat_id: data.message.chat.id,
+            text: 'Bot error. Link too long',
+            reply_parameters: { message_id: data.message.message_id },
+          });
+        } else {
+          await telegram('sendMessage', {
+            chat_id: data.message.chat.id,
+            text: `Found link: ${target}. What do you want to do?`,
+            reply_parameters: { message_id: data.message.message_id },
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  { text: "Like", callback_data: JSON.stringify({ action: 'like', target }) },
+                  { text: "Bookmark", callback_data: JSON.stringify({ action: 'bookmark', target }) },
+                  { text: "Cancel", callback_data: JSON.stringify({ action: 'cancel', target }) },
+                ]
               ]
-            ]
-          }
+            }
+          });
+        }
+      }
+      if (links.length === 0) {
+        await telegram('sendMessage', {
+          chat_id: data.message.chat.id,
+          reply_parameters: { message_id: data.message.message_id },
+          text: "No links in message. Can't do anything with that"
         });
       }
-    }
-    if (links.length === 0) {
-      await telegram('sendMessage', {
-        chat_id: data.message.chat.id,
-        reply_parameters: { message_id: data.message.message_id },
-        text: "No links in message. Can't do anything with that"
-      });
     }
     console.log('---');
   } else if (data.callback_query) {
     console.log('Received callback query');
     console.log(data.callback_query);
     const callback_data = JSON.parse(data.callback_query.data);
+
 
     try {
       await telegram('answerCallbackQuery', { callback_query_id: data.callback_query.id });
