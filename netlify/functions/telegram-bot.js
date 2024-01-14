@@ -3,14 +3,7 @@ import * as linkify from 'linkifyjs';
 import { titleOfUrl } from './lib/utils';
 import * as cheerio from 'cheerio';
 
-export default async (req, context) => {
-  console.log("telegram-bot request");
-  const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
-  if (secret_token !== process.env.BOT_SECRET_TOKEN) {
-    throw new Error("Invalid secret token");
-  }
-  const data = await req.json();
-
+async function handleWebhook(botUrl, data) {
   if (data.message) {
     console.log("Received message");
     console.log(data.message);
@@ -18,7 +11,7 @@ export default async (req, context) => {
     if (data.message.text == '/info') {
       telegram('sendMessage', {
         chat_id: data.message.chat.id,
-        text: `Served from ${context.site.url}. WIP, not actually publishing anything`,
+        text: `Served from ${botUrl}. WIP, not actually publishing anything`,
       });
     } else {
       const urls = linkify.find(data.message.text, 'url')
@@ -95,6 +88,24 @@ export default async (req, context) => {
     console.log(data)
     console.log('---');
   }
+}
 
-  return new Response();
+export default async (req, context) => {
+  const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
+  if (secret_token !== process.env.BOT_SECRET_TOKEN) {
+    throw new Error("Invalid secret token");
+  }
+  const data = await req.json();
+
+  // Always return an ok response, just log errors when they happen.  Telegram
+  // will keep sending the same request if we return an error, so this is to
+  // prevent us from getting stuck in a loop
+  try {
+    await handleWebhook(context.site.url, data);
+  } catch (error) {
+    console.log("Error when running webhook:");
+    console.log(error);
+  } finally {
+    return new Response();
+  }
 }
