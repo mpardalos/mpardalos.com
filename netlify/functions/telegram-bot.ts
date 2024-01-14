@@ -62,7 +62,7 @@ async function handleWebhook(data: Telegram.Update, botUrl?: string) {
         await telegram('editMessageText', {
           chat_id: lastMessage.chat.id,
           message_id: lastMessage.message_id,
-          text: message + ' <a href="' + url + '">' + title + '/a>',
+          text: message + ' <a href="' + url + '">' + title + '</a>',
           parse_mode: 'HTML'
         });
       } else {
