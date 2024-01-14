@@ -9,7 +9,7 @@ async function handleWebhook(botUrl, data) {
     console.log(data.message);
 
     if (data.message.text == '/info') {
-      telegram('sendMessage', {
+      await telegram('sendMessage', {
         chat_id: data.message.chat.id,
         text: `Served from ${botUrl}. WIP, not actually publishing anything`,
       });
