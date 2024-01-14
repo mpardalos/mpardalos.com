@@ -16,7 +16,7 @@ export default async (req, context) => {
     if (data.message.text == '/info') {
       telegram('sendMessage', {
         chat_id: data.message.chat.id,
-        text: `Served from ${context.site.url}`,
+        text: `Served from ${context.site.url}. WIP, not actually publishing anything`,
       });
     } else {
       const links = linkify.find(data.message.text, 'url')
