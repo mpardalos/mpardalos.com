@@ -1,32 +1,22 @@
-import telegram from './lib/telegram';
+import { Telegraf } from "telegraf";
 import * as linkify from 'linkifyjs';
 
-export default async (req, context) => {
-  console.log("telegram-bot request");
-  const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
-  if (secret_token !== process.env.BOT_SECRET_TOKEN) {
-    throw new Error("Invalid secret token");
-  }
-  const data = await req.json();
+const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN!, {});
+bot.start(ctx => ctx.reply("Welcome!"));
+bot.help(ctx => ctx.reply("I am a WIP bot"));
 
-  if (data.message) {
-    console.log("Received message");
-    console.log(data.message);
-
-    const links = linkify.find(data.message.text, 'url')
+bot.on('message', async ctx => {
+  if ('text' in ctx.message) {
+    const links = linkify.find(ctx.message.text, 'url')
     for (const link of links) {
       const target = link.href;
       if (JSON.stringify({ action: 'bookmark', target }).length > 64) {
-        await telegram('sendMessage', {
-          chat_id: data.message.chat.id,
-          text: 'Bot error. Link too long',
-          reply_parameters: { message_id: data.message.message_id },
+        ctx.reply("Bot error. Link too long", {
+          reply_to_message_id: ctx.message.message_id
         });
       } else {
-        await telegram('sendMessage', {
-          chat_id: data.message.chat.id,
-          text: `Found link: ${target}. What do you want to do?`,
-          reply_parameters: { message_id: data.message.message_id },
+        ctx.reply(`Found link: ${target}. What do you want to do?`, {
+          reply_to_message_id: ctx.message.message_id,
           reply_markup: {
             inline_keyboard: [
               [
@@ -40,53 +30,51 @@ export default async (req, context) => {
       }
     }
     if (links.length === 0) {
-      await telegram('sendMessage', {
-        chat_id: data.message.chat.id,
-        reply_parameters: { message_id: data.message.message_id },
-        text: "No links in message. Can't do anything with that"
+      ctx.reply("No links in message. Can't do anything with that", {
+        reply_to_message_id: ctx.message.message_id
       });
     }
-    console.log('---');
-  } else if (data.callback_query) {
-    console.log('Received callback query');
-    console.log(data.callback_query);
-    const callback_data = JSON.parse(data.callback_query.data);
-
-    try {
-      await telegram('answerCallbackQuery', { callback_query_id: data.callback_query.id });
-    } catch (err) {
-      console.log(`Error answering callback query. Continuing: ${err}`)
-    }
-
-    switch (callback_data.action) {
-      case 'like':
-        await telegram('editMessageText', {
-          chat_id: data.callback_query.message.chat.id,
-          message_id: data.callback_query.message.message_id,
-          text: `❤️ Liked ${callback_data.target}`
-        });
-        break;
-      case 'bookmark':
-        await telegram('editMessageText', {
-          chat_id: data.callback_query.message.chat.id,
-          message_id: data.callback_query.message.message_id,
-          text: `🔖 Bookmarked ${callback_data.target}`,
-        });
-        break;
-      default:
-        await telegram('editMessageText', {
-          chat_id: data.callback_query.message.chat.id,
-          message_id: data.callback_query.message.message_id,
-          text: `❌ No action on ${callback_data.target}`,
-        });
-        break;
-    }
-    console.log('---');
-  } else {
-    console.log("Received request");
-    console.log(data)
-    console.log('---');
   }
+});
 
-  return new Response();
+bot.on('callback_query', async ctx => {
+  console.log('Received callback query');
+  if ('data' in ctx.callbackQuery) {
+    const callback_data = JSON.parse(ctx.callbackQuery.data);
+    if ('action' in callback_data && 'target' in callback_data) {
+      ctx.answerCbQuery();
+      switch (callback_data.action) {
+        case 'like':
+          await ctx.editMessageText(`❤️ Liked ${callback_data.target}`, {
+            chat_id: ctx.callbackQuery.message?.chat.id,
+            message_id: ctx.callbackQuery.message?.message_id
+          });
+          break;
+        case 'bookmark':
+          await ctx.editMessageText(`🔖 Bookmarked ${callback_data.target}`, {
+            chat_id: ctx.callbackQuery.message?.chat.id,
+            message_id: ctx.callbackQuery.message?.message_id
+          });
+          break;
+        default:
+          await ctx.editMessageText(`❌ No action on ${ callback_data.target }`, {
+            chat_id: ctx.callbackQuery.message?.chat.id,
+            message_id: ctx.callbackQuery.message?.message_id
+          });
+          break;
+      }
+    }
+  }
+})
+
+export default async (req, context) => {
+  console.log("telegram-bot request");
+  const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
+  if (secret_token !== process.env.BOT_SECRET_TOKEN) {
+    console.log("Invalid secret token");
+  } else {
+    const update = await req.json();
+    console.log(update);
+    bot.handleUpdate(update);
+  }
 }
