@@ -1,13 +1,15 @@
-import telegram from './lib/telegram';
+import { isCallbackQueryUpdate, isMessageUpdate, isTextMessage, telegram } from './lib/telegram';
 import * as linkify from 'linkifyjs';
 import { titleOfUrl } from './lib/utils';
+import * as Telegram from "@telegraf/types";
+import * as Netlify from "@netlify/functions";
 
-async function handleWebhook(botUrl, data) {
-  if (data.message) {
+async function handleWebhook(data: Telegram.Update, botUrl?: string) {
+  if (isMessageUpdate(data) && isTextMessage(data.message)) {
     if (data.message.text == '/info') {
       await telegram('sendMessage', {
         chat_id: data.message.chat.id,
-        text: `Served from ${botUrl}. WIP, not actually publishing anything`,
+        text: `Served from ${botUrl || "Unknown"}. WIP, not actually publishing anything`,
       });
     } else {
       const urls = linkify.find(data.message.text, 'url')
@@ -38,56 +40,51 @@ async function handleWebhook(botUrl, data) {
         });
       }
     }
-  } else if (data.callback_query) {
+  } else if (isCallbackQueryUpdate(data)) {
     try {
       await telegram('answerCallbackQuery', { callback_query_id: data.callback_query.id });
     } catch (err) {
       console.log(`Error answering callback query. Continuing: ${err}`)
     }
 
-    if (data.callback_query.message.date == 0) {
-      // Inaccessible message
-      await telegram('sendMessage', {
-        chat_id: data.callback_query.message.chat.id,
-        message_id: data.callback_query.message.message_id,
-        text: 'Message is inaccessible'
-      })
-    } else {
-      const link = data.callback_query.message.entities[0];
-      if (link && link.url) {
+    const lastMessage = data.callback_query.message;
+    if (lastMessage && isTextMessage(lastMessage) && lastMessage.entities && 'data' in data.callback_query) {
+      const link = lastMessage.entities[0];
+      if ('url' in link) {
         const url = link.url;
         const title = await titleOfUrl(url);
-        var message;
+        var message: string;
         switch (data.callback_query.data) {
           case 'like': message = '❤️ Liked'; break;
           case 'bookmark': message = '🔖 Bookmarked'; break;
           default: message = 'X No action'; break;
         }
         await telegram('editMessageText', {
-          chat_id: data.callback_query.message.chat.id,
-          message_id: data.callback_query.message.message_id,
-          text: message + ' <a href="' + url + '">' + title + '</a>',
+          chat_id: lastMessage.chat.id,
+          message_id: lastMessage.message_id,
+          text: message + ' <a href="' + url + '">' + title + '/a>',
           parse_mode: 'HTML'
         });
       } else {
         throw new Error("No link in originating message");
       }
+
     }
   }
 }
 
-export default async (req, context) => {
+export default async (req: Request, context: Netlify.Context) => {
   const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
   if (secret_token !== process.env.BOT_SECRET_TOKEN) {
     throw new Error("Invalid secret token");
   }
-  const data = await req.json();
+  const data = (await req.json() as Telegram.Update);
 
   // Always return an ok response, just log errors when they happen.  Telegram
   // will keep sending the same request if we return an error, so this is to
   // prevent us from getting stuck in a loop
   try {
-    await handleWebhook(context.site.url, data);
+    await handleWebhook(data, context.site.url);
   } catch (error) {
     console.log("Error when running webhook:");
     console.log(error);

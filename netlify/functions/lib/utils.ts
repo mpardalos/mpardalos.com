@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 
-export async function titleOfUrl(url) {
+export async function titleOfUrl(url: string) : Promise<string> {
   const response = await fetch(url);
   const body = await response.text();
   const html = cheerio.load(body);

@@ -9,6 +9,8 @@
   "author": "Michalis Pardalos",
   "license": "MIT",
   "devDependencies": {
+    "@netlify/functions": "^2.4.1",
+    "@telegraf/types": "^6.9.1",
     "node-fetch": "^3.3.2"
   },
   "type": "module",

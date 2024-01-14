@@ -1,4 +1,4 @@
-import telegram from './lib/telegram';
+import { telegram } from './lib/telegram';
 
 const BOT_SECRET_TOKEN = process.env.BOT_SECRET_TOKEN;
 
