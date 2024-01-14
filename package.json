@@ -11,6 +11,7 @@
   "devDependencies": {
     "@netlify/functions": "^2.4.1",
     "@telegraf/types": "^6.9.1",
+    "@types/node": "^20.11.0",
     "node-fetch": "^3.3.2"
   },
   "type": "module",
