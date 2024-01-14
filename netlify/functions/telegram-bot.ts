@@ -70,7 +70,7 @@ async function handleWebhook(botUrl, data) {
           parse_mode: 'HTML'
         });
       } else {
-        console.log("Error: No link in originating message");
+        throw new Error("No link in originating message");
       }
     }
   }
