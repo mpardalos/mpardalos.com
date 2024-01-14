@@ -1,13 +1,9 @@
 import telegram from './lib/telegram';
 import * as linkify from 'linkifyjs';
 import { titleOfUrl } from './lib/utils';
-import * as cheerio from 'cheerio';
 
 async function handleWebhook(botUrl, data) {
   if (data.message) {
-    console.log("Received message");
-    console.log(data.message);
-
     if (data.message.text == '/info') {
       await telegram('sendMessage', {
         chat_id: data.message.chat.id,
@@ -42,11 +38,7 @@ async function handleWebhook(botUrl, data) {
         });
       }
     }
-    console.log('---');
   } else if (data.callback_query) {
-    console.log('Received callback query');
-    console.log(data.callback_query);
-
     try {
       await telegram('answerCallbackQuery', { callback_query_id: data.callback_query.id });
     } catch (err) {
@@ -81,12 +73,6 @@ async function handleWebhook(botUrl, data) {
         console.log("Error: No link in originating message");
       }
     }
-
-    console.log('---');
-  } else {
-    console.log("Received request");
-    console.log(data)
-    console.log('---');
   }
 }
 
