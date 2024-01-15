@@ -4,7 +4,7 @@ export async function titleOfUrl(url: string) : Promise<string> {
   const response = await fetch(url);
   const body = await response.text();
   const html = cheerio.load(body);
-  const titleText = html('title').text();
+  const titleText = html('title:first').text();
   if (titleText.trim() == '') {
     return url
   } else {
