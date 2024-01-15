@@ -1,12 +1,14 @@
 {{ define "body" }}
 <section>
-	<h2>Feed</h2>
+	<h2>{{ .Title }}</h2>
+	{{ with .Content }}<p>{{ . }}</p>{{ end }}
 	{{ range .Pages }}
-	<article class="h-entry feed-post">
+	<article class="h-entry">
 		{{ $post := . }}
-		{{ with .Params.like_of }}
-		❤️ <a class="u-like-of" href="{{ . }}">
-		{{ if strings.ContainsNonSpace $post.Title }}
+		{{ $hasTitle := strings.ContainsNonSpace $post.Title }}
+		{{ with .Params.bookmark_of }}
+		🔖 <a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
+		{{ if $hasTitle }}
 			{{ $post.Title }}
 		{{ else }}
 			{{ . }}
