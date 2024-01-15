@@ -3,13 +3,14 @@ import * as linkify from 'linkifyjs';
 import { titleOfUrl } from './lib/utils';
 import * as Telegram from "@telegraf/types";
 import * as Netlify from "@netlify/functions";
+import { handleCreate } from './lib/content';
 
 async function handleWebhook(data: Telegram.Update, botUrl?: string) {
   if (isMessageUpdate(data) && isTextMessage(data.message)) {
     if (data.message.text == '/info') {
       await telegram('sendMessage', {
         chat_id: data.message.chat.id,
-        text: `Served from ${botUrl || "Unknown"}. WIP, not actually publishing anything`,
+        text: `Served from ${botUrl || "Unknown"}.`,
       });
     } else {
       const urls = linkify.find(data.message.text, 'url')
@@ -55,8 +56,11 @@ async function handleWebhook(data: Telegram.Update, botUrl?: string) {
         const title = await titleOfUrl(url);
         var message: string;
         switch (data.callback_query.data) {
-          case 'like': message = '❤️ Liked'; break;
-          case 'bookmark': message = '🔖 Bookmarked'; break;
+          case 'like':
+            message = '❤️ Liked';
+            await handleCreate({ title, likeOf: url });
+            break;
+          case 'bookmark': message = '🔖 Bookmarked (Not Implemented)'; break;
           default: message = 'X No action'; break;
         }
         await telegram('editMessageText', {
