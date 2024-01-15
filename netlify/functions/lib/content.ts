@@ -7,42 +7,49 @@ type ShortPost = {
   title: string,
 }
 
-type Like = {
-  likeOf: string,
+type Bookmark = {
+  bookmarkOf: string,
   title?: string,
   content?: string
 }
 
-export async function handleCreate(args: Like | ShortPost) {
-  console.log(`CREATE ${JSON.stringify(args)}`);
-
+export async function createShortPost(shortPost: ShortPost) {
   const now = new Date();
-  let slug = now.getTime().toString();
-  if (args.title) {
-    const safeTitle = args.title.toLowerCase().replace(' ', '-');
-    slug += `-${safeTitle}`;
-  }
-  const directory = 'content/social';
-  const filename = `${slug}.md`;
-  const path = `${directory}/${filename}`;
+  const slug = now.getTime().toString();
+  const path = `content/social/${slug}.md`;
 
   let content = ""
   content += "---\n"
   content += `date: ${now.toISOString()}\n`
-  if ('likeOf' in args) {
-    content += `like_of: ${args.likeOf}\n`
-  }
-  if (args.title) {
-    content += `title: ${args.title}\n`
-  }
+  content += `title: ${shortPost.title}\n`
   content += "---\n"
-  if ('content' in args) {
-    content += "\n"
-    content += args.content;
-  }
+  content += "\n"
+  content += shortPost.content;
 
   await github.createFile(path, content)
 
   return `/social/${slug}`;
+}
 
+export async function createBookmark(bookmark: Bookmark) {
+  const now = new Date();
+  const slug = now.getTime().toString();
+  const path = `content/bookmarks/${slug}.md`;
+
+  let content = ""
+  content += "---\n"
+  content += `date: ${now.toISOString()}\n`
+  content += `bookmark_of: ${bookmark.bookmarkOf}\n`
+  if (bookmark.title) {
+    content += `title: ${bookmark.title}\n`
+  }
+  content += "---\n"
+  if (bookmark.content) {
+    content += "\n"
+    content += bookmark.content;
+  }
+
+  await github.createFile(path, content)
+
+  return `/bookmarks/${slug}`;
 }
