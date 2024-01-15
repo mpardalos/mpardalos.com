@@ -3,8 +3,15 @@
 	<h2>Feed</h2>
 	{{ range .Pages }}
 	<article class="h-entry">
+		{{ $post := . }}
 		{{ with .Params.like_of }}
-		❤️ <a class="u-like-of" href="{{ . }}">{{ . }}</a>
+		❤️ <a class="u-like-of" href="{{ . }}">
+		{{ if strings.ContainsNonSpace $post.Title }}
+			{{ $post.Title }}
+		{{ else }}
+			{{ . }}
+		{{ end }}
+		</a>
 		{{ end }}
 		{{ with .Content }}
 		<div class="e-content">
