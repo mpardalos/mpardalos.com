@@ -1,7 +1,6 @@
 import https from 'https';
+import * as github from './lib/github';
 
-const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
-const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
 const HOSTNAME = "https://mpardalos.com"
 
 export default async function(event) {
@@ -142,8 +141,7 @@ async function handleCreate(body) {
     content += body.properties['content']
   }
 
-  const github_response = await githubCreateFile(path, content)
-  console.log(`GITHUB RESPONSE: ${github_response}`);
+  await github.createFile(path, content)
 
   return CREATED(`${HOSTNAME}/social/${slug}`);
 
@@ -162,28 +160,6 @@ function handleDelete(body) {
 function handleUndelete(body) {
   console.log(`CREATE ${JSON.stringify(body)}`);
   return NOT_IMPLEMENTED;
-}
-
-async function githubCreateFile(path, content) {
-  console.log(`GITHUB CREATE AT ${path}:\n%%%%%%%\n${content}\n%%%%%%%`)
-  if (DO_NOT_CREATE) {
-    console.log("DO_NOT_CREATE")
-    return {}
-  }
-  const base64_content = Buffer.from(content).toString('base64');
-  return await put({
-    hostname: 'api.github.com',
-    path: `/repos/mpardalos/mpardalos.com/contents/${path}`,
-    headers: {
-      'User-Agent': 'node', // Github API requires a user-agent header
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}`
-    },
-
-  }, {
-    "message": `Micropub: Create ${path}`,
-    "content": base64_content
-  })
 }
 
 // *********************** HELPERS ****************************************************************************
