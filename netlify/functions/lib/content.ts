@@ -21,7 +21,7 @@ export async function createShortPost(shortPost: ShortPost) {
   let content = ""
   content += "---\n"
   content += `date: ${now.toISOString()}\n`
-  content += `title: ${shortPost.title}\n`
+  content += `title: "${shortPost.title}"\n`
   content += "---\n"
   content += "\n"
   content += shortPost.content;
@@ -39,9 +39,9 @@ export async function createBookmark(bookmark: Bookmark) {
   let content = ""
   content += "---\n"
   content += `date: ${now.toISOString()}\n`
-  content += `bookmark_of: ${bookmark.bookmarkOf}\n`
+  content += `bookmark_of: "${bookmark.bookmarkOf}"\n`
   if (bookmark.title) {
-    content += `title: ${bookmark.title}\n`
+    content += `title: "${bookmark.title}"\n`
   }
   content += "---\n"
   if (bookmark.content) {
