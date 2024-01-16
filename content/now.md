@@ -1,7 +1,12 @@
 ---
 title: What am I doing?
-date: 2023-01-08
+date: 2023-01-15
 ---
+
+This week I am attending [POPL](https://popl24.sigplan.org/) in London. Looking forward to a lot of interesting talks and discussion. 
+
+I am also writing down my thoughts as I go, and I will post those here.
+
 
 ## PhD
 
