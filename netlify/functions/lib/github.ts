@@ -19,7 +19,7 @@ export async function createFile(
             'Authorization': `Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}`
         },
         body: JSON.stringify({
-            "message": `Micropub: Create ${path}`,
+            "message": `Create ${path}`,
             "content": base64_content
         })
     });
