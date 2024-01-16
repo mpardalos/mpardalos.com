@@ -12,6 +12,11 @@ async function handleWebhook(data: Telegram.Update, botUrl?: string) {
         chat_id: data.message.chat.id,
         text: `Served from ${botUrl || "Unknown"}.`,
       });
+    } else if (data.message.text == '/help') {
+      await telegram('sendMessage', {
+        chat_id: data.message.chat.id,
+        text: `Send me a link and I can bookmark it on mpardalos.com/bookmarks/`,
+      });
     } else {
       const urls = linkify.find(data.message.text, 'url')
       for (const url of urls) {
