@@ -2,26 +2,27 @@
 <section>
 	<h2>{{ .Title }}</h2>
 	{{ with .Content }}<p>{{ . }}</p>{{ end }}
-	{{ range .Pages }}
-	<article class="h-entry">
-		{{ $post := . }}
-		{{ $hasTitle := strings.ContainsNonSpace $post.Title }}
-		{{ with .Params.bookmark_of }}
-		🔖 <a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
-		{{ if $hasTitle }}
+	<ul class="bookmark-list">
+		{{ range .Pages }}
+		<li class="h-entry">
+			{{ $post := . }}
+			{{ $hasTitle := strings.ContainsNonSpace $post.Title }}
+			{{ with .Params.bookmark_of }}
+			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
+			{{ if $hasTitle }}
 			{{ $post.Title }}
-		{{ else }}
+			{{ else }}
 			{{ . }}
-		{{ end }}
-		</a>
-		{{ end }}
-		{{ with .Content }}
-		<div class="e-content">
-			{{ . }}
-		</div>
-		{{ end }}
-		<time class="dt-published" datetime="{{.Date}}">{{ .Date.Format "2 Jan 2006" }}</time>
-	</article>
+			{{ end }}
+			</a>
+			{{ end }}
+			{{ with .Content }}
+			<div class="e-content">
+				{{ . }}
+			</div>
+			{{ end }}
+		</li>
 	{{ end }}
+	</ul>
 </section>
 {{ end }}

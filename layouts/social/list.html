@@ -1,25 +1,27 @@
 {{ define "body" }}
 <section>
 	<h2>Feed</h2>
-	{{ range .Pages }}
-	<article class="h-entry feed-post">
-		{{ $post := . }}
-		{{ with .Params.like_of }}
-		❤️ <a class="u-like-of" href="{{ . }}">
-		{{ if strings.ContainsNonSpace $post.Title }}
+	<div class="social-list">
+		{{ range .Pages }}
+		<article class="h-entry feed-post">
+			{{ $post := . }}
+			{{ with .Params.like_of }}
+			❤️ <a class="u-like-of" href="{{ . }}">
+			{{ if strings.ContainsNonSpace $post.Title }}
 			{{ $post.Title }}
-		{{ else }}
+			{{ else }}
 			{{ . }}
+			{{ end }}
+			</a>
+			{{ end }}
+			{{ with .Content }}
+			<div class="e-content">
+				{{ . }}
+			</div>
+			{{ end }}
+			<time class="dt-published" datetime="{{.Date}}">{{ .Date.Format "2 Jan 2006" }}</time>
+		</article>
 		{{ end }}
-		</a>
-		{{ end }}
-		{{ with .Content }}
-		<div class="e-content">
-			{{ . }}
-		</div>
-		{{ end }}
-		<time class="dt-published" datetime="{{.Date}}">{{ .Date.Format "2 Jan 2006" }}</time>
-	</article>
-	{{ end }}
+	</div>
 </section>
 {{ end }}

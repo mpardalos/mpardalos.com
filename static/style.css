@@ -92,11 +92,11 @@ section>h2 {
     max-width: 200px;
 }
 
-.h-entry {
+.social-list .h-entry {
     margin: 1ch 0px;
 }
 
-.h-entry:not(:last-child)::after {
+.social-list .h-entry:not(:last-child)::after {
     content: '';
     display: block;
     width: 66%;
@@ -116,6 +116,19 @@ section>h2 {
 .page-list {
     list-style: none;
     padding-left: 0;
+}
+
+/** Bookmarks **/
+
+@counter-style bookmark {
+    system: cyclic;
+    symbols: "\1F516";
+    suffix: " ";
+}
+
+.bookmark-list {
+    list-style-type: bookmark;
+    padding-left: 1.4em;
 }
 
 /** Publications **/
