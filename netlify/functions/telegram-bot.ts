@@ -5,7 +5,7 @@ import * as Telegram from "@telegraf/types";
 import * as Netlify from "@netlify/functions";
 import { createShortPost, createBookmark } from './lib/content';
 
-async function handleWebhook(data: Telegram.Update, botUrl?: string) {
+async function handleWebhook(data: Telegram.Update.MessageUpdate | Telegram.Update.CallbackQueryUpdate, botUrl?: string) {
   if (isMessageUpdate(data) && isTextMessage(data.message)) {
     if (data.message.text == '/info') {
       await telegram('sendMessage', {
@@ -79,18 +79,36 @@ async function handleWebhook(data: Telegram.Update, botUrl?: string) {
   }
 }
 
+function updateUser(update: Telegram.Update.MessageUpdate | Telegram.Update.CallbackQueryUpdate): string | undefined {
+  const chat = isMessageUpdate(update)
+    ? update.message.chat
+    : update.callback_query.message?.chat;
+  if (chat && 'username' in chat) {
+    return chat?.username;
+  }
+}
+
 export default async (req: Request, context: Netlify.Context) => {
   const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
   if (secret_token !== process.env.BOT_SECRET_TOKEN) {
     throw new Error("Invalid secret token");
   }
-  const data = (await req.json() as Telegram.Update);
+  const update = (await req.json() as Telegram.Update);
 
   // Always return an ok response, just log errors when they happen.  Telegram
   // will keep sending the same request if we return an error, so this is to
   // prevent us from getting stuck in a loop
   try {
-    await handleWebhook(data, context.site.url);
+    if (!(isMessageUpdate(update) || isCallbackQueryUpdate(update))) {
+      throw new Error("Non-implemented update type");
+    }
+
+    const username = updateUser(update);
+    if (username !== process.env.TELEGRAM_USERNAME) {
+      throw new Error(`Refusing to answer to user: ${username}`);
+    }
+
+    await handleWebhook(update, context.site.url);
   } catch (error) {
     console.log("Error when running webhook:");
     console.log(error);
