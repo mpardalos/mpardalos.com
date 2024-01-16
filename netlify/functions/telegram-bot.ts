@@ -3,7 +3,7 @@ import * as linkify from 'linkifyjs';
 import { titleOfUrl } from './lib/utils';
 import * as Telegram from "@telegraf/types";
 import * as Netlify from "@netlify/functions";
-import { createShortPost, createBookmark } from './lib/content';
+import { createBookmark, createLike } from './lib/content';
 
 async function handleWebhook(data: Telegram.Update.MessageUpdate | Telegram.Update.CallbackQueryUpdate, botUrl?: string) {
   if (isMessageUpdate(data) && isTextMessage(data.message)) {
@@ -29,8 +29,9 @@ async function handleWebhook(data: Telegram.Update.MessageUpdate | Telegram.Upda
           reply_markup: {
             inline_keyboard: [
               [
-                { text: "Bookmark", callback_data: 'bookmark' },
-                { text: "Cancel", callback_data: 'cancel' },
+                { text: "🔖 Bookmark", callback_data: 'bookmark' },
+                { text: "❤ Like", callback_data: 'like' },
+                { text: "❌ Cancel", callback_data: 'cancel' },
               ]
             ]
           }
@@ -62,6 +63,9 @@ async function handleWebhook(data: Telegram.Update.MessageUpdate | Telegram.Upda
         if (data.callback_query.data === 'bookmark') {
           message = '🔖 Bookmarked';
           await createBookmark({ title, bookmarkOf: url });
+        } else if (data.callback_query.data === 'like') {
+          message = '❤️ Liked';
+          await createLike({ title, likeOf: url });
         } else {
           message = '❌ No action';
         }

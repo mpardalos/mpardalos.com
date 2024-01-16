@@ -13,6 +13,12 @@ type Bookmark = {
   content?: string
 }
 
+type Like = {
+  likeOf: string,
+  title?: string,
+  content?: string
+}
+
 export async function createShortPost(shortPost: ShortPost) {
   const now = new Date();
   const slug = now.getTime().toString();
@@ -52,4 +58,27 @@ export async function createBookmark(bookmark: Bookmark) {
   await github.createFile(path, content)
 
   return `/bookmarks/${slug}`;
+}
+
+export async function createLike(like: Like) {
+  const now = new Date();
+  const slug = now.getTime().toString();
+  const path = `content/social/${slug}.md`;
+
+  let content = ""
+  content += "---\n"
+  content += `date: ${now.toISOString()}\n`
+  content += `like_of: "${like.likeOf}"\n`
+  if (like.title) {
+    content += `title: "${like.title}"\n`
+  }
+  content += "---\n"
+  if (like.content) {
+    content += "\n"
+    content += like.content;
+  }
+
+  await github.createFile(path, content)
+
+  return `/social/${slug}`;
 }
