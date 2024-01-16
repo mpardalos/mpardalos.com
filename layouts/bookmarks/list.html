@@ -3,10 +3,10 @@
 	<h2>{{ .Title }}</h2>
 	<p>Sites I visit regularly</p>
 	<ul class="bookmark-list">
-		{{ range (where .Pages ".Params.like_of" nil) }}
+		{{ range (where .Pages ".Params.bookmark_of" "ne" nil) }}
 		<li class="h-entry">
 			{{ $hasTitle := strings.ContainsNonSpace .Title }}
-			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
+			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ .Params.bookmark_of }}">
 				{{ if $hasTitle }}
 				{{ .Title }}
 				{{ else }}
@@ -24,10 +24,10 @@
 	<hr />
 	<p>Interesting things I found</p>
 	<ul class="like-list">
-		{{ range (where .Pages ".Params.bookmark_of" nil) }}
+		{{ range (where .Pages ".Params.like_of" "ne" nil) }}
 		<li class="h-entry">
 			{{ $hasTitle := strings.ContainsNonSpace .Title }}
-			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
+			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ .Params.like_of }}">
 				{{ if $hasTitle }}
 				{{ .Title }}
 				{{ else }}
