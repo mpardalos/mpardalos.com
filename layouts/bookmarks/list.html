@@ -1,28 +1,46 @@
 {{ define "body" }}
 <section>
 	<h2>{{ .Title }}</h2>
-	{{ with .Content }}<p>{{ . }}</p>{{ end }}
+	<p>Sites I visit regularly</p>
 	<ul class="bookmark-list">
-		{{ range .Pages }}
+		{{ range (where .Pages ".Params.like_of" nil) }}
 		<li class="h-entry">
-			{{ $post := . }}
-			{{ $hasTitle := strings.ContainsNonSpace $post.Title }}
-			{{ with .Params.bookmark_of }}
+			{{ $hasTitle := strings.ContainsNonSpace .Title }}
 			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
-			{{ if $hasTitle }}
-			{{ $post.Title }}
-			{{ else }}
-			{{ . }}
-			{{ end }}
+				{{ if $hasTitle }}
+				{{ .Title }}
+				{{ else }}
+				{{ . }}
+				{{ end }}
 			</a>
-			{{ end }}
 			{{ with .Content }}
 			<div class="e-content">
 				{{ . }}
 			</div>
 			{{ end }}
 		</li>
-	{{ end }}
+		{{ end }}
+	</ul>
+	<hr />
+	<p>Interesting things I found</p>
+	<ul class="like-list">
+		{{ range (where .Pages ".Params.bookmark_of" nil) }}
+		<li class="h-entry">
+			{{ $hasTitle := strings.ContainsNonSpace .Title }}
+			<a class="u-bookmark-of {{ if $hasTitle }}h-cite{{ end }}" href="{{ . }}">
+				{{ if $hasTitle }}
+				{{ .Title }}
+				{{ else }}
+				{{ . }}
+				{{ end }}
+			</a>
+			{{ with .Content }}
+			<div class="e-content">
+				{{ . }}
+			</div>
+			{{ end }}
+		</li>
+		{{ end }}
 	</ul>
 </section>
 {{ end }}

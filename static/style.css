@@ -131,6 +131,17 @@ section>h2 {
     padding-left: 1.4em;
 }
 
+@counter-style like {
+    system: cyclic;
+    symbols: "❤️";
+    suffix: " ";
+}
+
+.like-list {
+    list-style-type: like;
+    padding-left: 1.4em;
+}
+
 /** Publications **/
 
 .publication-list {
