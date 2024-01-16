@@ -83,15 +83,6 @@ async function handleWebhook(data: Telegram.Update.MessageUpdate | Telegram.Upda
   }
 }
 
-function updateUser(update: Telegram.Update.MessageUpdate | Telegram.Update.CallbackQueryUpdate): string | undefined {
-  const chat = isMessageUpdate(update)
-    ? update.message.chat
-    : update.callback_query.message?.chat;
-  if (chat && 'username' in chat) {
-    return chat?.username;
-  }
-}
-
 export default async (req: Request, context: Netlify.Context) => {
   const secret_token = req.headers.get('X-Telegram-Bot-Api-Secret-Token')
   if (secret_token !== process.env.BOT_SECRET_TOKEN) {
@@ -107,7 +98,9 @@ export default async (req: Request, context: Netlify.Context) => {
       throw new Error("Non-implemented update type");
     }
 
-    const username = updateUser(update);
+    const username = isMessageUpdate(update)
+      ? update.message.chat['username']
+      : update.callback_query.message?.chat['username'];
     if (username !== process.env.TELEGRAM_USERNAME) {
       throw new Error(`Refusing to answer to user: ${username}`);
     }
