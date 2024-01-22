@@ -1,12 +1,7 @@
 ---
 title: What am I doing?
-date: 2023-01-15
+date: 2023-01-22
 ---
-
-This week I am attending [POPL](https://popl24.sigplan.org/) in London. Looking forward to a lot of interesting talks and discussion. 
-
-I am also writing down my thoughts as I go, and I will post those here.
-
 
 ## PhD
 
@@ -14,13 +9,13 @@ I am currently in the second year of my PhD in Electrical and Electronic Enginee
 
 I started my PhD working on a project to find bugs in [Equivalence Checkers](https://en.wikipedia.org/wiki/Formal_equivalence_checking). The results of this project have been submitted for publication to DAC 2024.
 
-I am interested in continuing work on the field of equivalence checking, and I am currently investigating building an equivalence checker based on the [CIRCT framework](https://circt.llvm.org/).
+I am interested in continuing work on the field of equivalence checking, and I am currently investigating building a mechanically verified equivalence checker.
 
-I will be attending in [POPL 2024](https://popl24.sigplan.org/).
+This term (Spring 2024) I am TAing for the 2nd year Language Processors module in the EE department.
 
 ## Side-projects
 
-My focus is currently on this website. I have grown really interested in the ideas of the [IndieWeb](https://indieweb.org) community, as well as Digital Gardens. This website is inspired by both of these concepts. 
+My focus is currently on this website. I have grown really interested in the ideas of the [IndieWeb](https://indieweb.org) community, as well as Digital Gardens. This website is inspired by both of these concepts. I like doing my own implementations of various IndieWeb protocols, like [micropub](https://indieweb.org/Micropub), suited to how I like to interact with my website.
 
 I also spend quite a bit of time working on my [homelab](https://www.reddit.com/r/homelab/), trying out different software 
 
