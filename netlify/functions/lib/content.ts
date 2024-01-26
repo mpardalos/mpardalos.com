@@ -63,7 +63,7 @@ export async function createBookmark(bookmark: Bookmark) {
 export async function createLike(like: Like) {
   const now = new Date();
   const slug = now.getTime().toString();
-  const path = `content/social/${slug}.md`;
+  const path = `content/bookmarks/${slug}.md`;
 
   let content = ""
   content += "---\n"
@@ -80,5 +80,5 @@ export async function createLike(like: Like) {
 
   await github.createFile(path, content)
 
-  return `/social/${slug}`;
+  return `/bookmarks/${slug}`;
 }
