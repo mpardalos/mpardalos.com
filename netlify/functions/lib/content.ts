@@ -47,7 +47,7 @@ export async function createBookmark(bookmark: Bookmark) {
   content += `date: ${now.toISOString()}\n`
   content += `bookmark_of: "${bookmark.bookmarkOf}"\n`
   if (bookmark.title) {
-    content += `title: "${bookmark.title}"\n`
+    content += `title: ${bookmark.title}\n`
   }
   content += "---\n"
   if (bookmark.content) {
