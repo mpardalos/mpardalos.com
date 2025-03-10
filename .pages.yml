@@ -26,7 +26,10 @@ content:
         type: date
         required: true
       - name: like_of
-        label: URL
+        label: Like URL
+        type: string
+      - name: bookmark_of
+        label: Bookmark URL
         type: string
       - name: title
         label: Title
