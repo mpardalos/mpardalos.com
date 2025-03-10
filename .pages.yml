@@ -13,3 +13,6 @@ content:
         type: select
         options: 
           values: [ "Game", "Movie", "Book" ]
+      - name: body
+        label: Body
+        type: rich-text
