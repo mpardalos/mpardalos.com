@@ -24,7 +24,6 @@ content:
       - name: date
         label: Date
         type: date
-        required: true
       - name: like_of
         label: Like URL
         type: string
