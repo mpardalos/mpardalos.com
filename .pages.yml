@@ -1,0 +1,7 @@
+content:
+  - name: posts
+    label: Posts
+    path: content/posts
+    type: collection
+    primary: title
+    fields: [ title, date, type ]
