@@ -16,3 +16,18 @@ content:
       - name: body
         label: Body
         type: rich-text
+  - name: bookmarks
+    label: Bookmarks
+    path: content/bookmarks
+    type: collection
+    fields:
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: like_of
+        label: URL
+        type: string
+      - name: title
+        label: Title
+        type: string
