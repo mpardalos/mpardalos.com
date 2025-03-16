@@ -4,7 +4,7 @@
   "description": "Michalis Pardalos' personal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "BROWSER=none npm exec -- netlify-cli dev"
   },
   "author": "Michalis Pardalos",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "@netlify/functions": "^2.4.1",
     "@telegraf/types": "^6.9.1",
     "@types/node": "^20.11.0",
+    "netlify-cli": "^19.0.2",
     "node-fetch": "^3.3.2"
   },
   "type": "module",
