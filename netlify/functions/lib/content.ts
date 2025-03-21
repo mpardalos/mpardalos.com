@@ -1,6 +1,7 @@
 // This module contains functions to perform the actual changes to the website
 
 import * as github from "./github";
+import { dbg } from "./utils";
 
 type ShortPost = {
   content: string,
@@ -20,6 +21,7 @@ type Like = {
 }
 
 export async function createShortPost(shortPost: ShortPost) {
+  console.log(`Short post ${dbg(shortPost)}`);
   const now = new Date();
   const slug = now.getTime().toString();
   const path = `content/social/${slug}.md`;
@@ -38,6 +40,7 @@ export async function createShortPost(shortPost: ShortPost) {
 }
 
 export async function createBookmark(bookmark: Bookmark) {
+  console.log(`Bookmark ${dbg(bookmark)}`);
   const now = new Date();
   const slug = now.getTime().toString();
   const path = `content/links/${slug}.md`;
@@ -61,6 +64,7 @@ export async function createBookmark(bookmark: Bookmark) {
 }
 
 export async function createLike(like: Like) {
+  console.log(`Like ${dbg(like)}`);
   const now = new Date();
   const slug = now.getTime().toString();
   const path = `content/links/${slug}.md`;

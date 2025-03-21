@@ -11,3 +11,7 @@ export async function titleOfUrl(url: string) : Promise<string> {
     return titleText;
   }
 }
+
+export function dbg(obj: any) {
+  return JSON.stringify(obj, undefined, 2);
+}

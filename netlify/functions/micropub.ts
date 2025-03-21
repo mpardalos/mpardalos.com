@@ -1,6 +1,7 @@
 import * as github from "./lib/github";
 import * as Netlify from "@netlify/functions";
 import * as content from "./lib/content";
+import { dbg } from "./lib/utils";
 
 type Content = string[];
 
@@ -294,8 +295,4 @@ class NotImplementedError extends Error {
 
 function NOT_IMPLEMENTED(msg) {
   throw new NotImplementedError(msg);
-}
-
-function dbg(obj: any) {
-  return JSON.stringify(obj, undefined, 2);
 }
