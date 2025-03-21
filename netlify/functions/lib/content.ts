@@ -40,7 +40,7 @@ export async function createShortPost(shortPost: ShortPost) {
 export async function createBookmark(bookmark: Bookmark) {
   const now = new Date();
   const slug = now.getTime().toString();
-  const path = `content/bookmarks/${slug}.md`;
+  const path = `content/links/${slug}.md`;
 
   let content = ""
   content += "---\n"
@@ -57,13 +57,13 @@ export async function createBookmark(bookmark: Bookmark) {
 
   await github.createFile(path, content)
 
-  return `/bookmarks/${slug}`;
+  return `/links/${slug}`;
 }
 
 export async function createLike(like: Like) {
   const now = new Date();
   const slug = now.getTime().toString();
-  const path = `content/bookmarks/${slug}.md`;
+  const path = `content/links/${slug}.md`;
 
   let content = ""
   content += "---\n"
@@ -80,5 +80,5 @@ export async function createLike(like: Like) {
 
   await github.createFile(path, content)
 
-  return `/bookmarks/${slug}`;
+  return `/links/${slug}`;
 }

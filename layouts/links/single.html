@@ -1,0 +1,11 @@
+{{ define "body" }}
+<article>
+	{{ .Content }}
+	{{ $title := .Title }}
+	{{ if .Params.bookmark_of }}
+	🔖 <a class="u-bookmark-of" href="{{ .Params.bookmark_of }}">{{ $title }}</a>
+	{{ else if .Params.like_of }}
+	❤️ <a class="u-like-of" href="{{ .Params.like_of }}">{{ $title }}</a>
+	{{ end }}
+</article>
+{{ end }}
