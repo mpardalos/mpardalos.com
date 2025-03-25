@@ -10,7 +10,11 @@ async function handleWebhook(data: Telegram.Update.MessageUpdate | Telegram.Upda
     if (data.message.text == '/info') {
       await telegram('sendMessage', {
         chat_id: data.message.chat.id,
-        text: `Served from ${botUrl || "Unknown"}.`,
+        text: `Served from: ${botUrl || "Unknown"}.`,
+      });
+      await telegram('sendMessage', {
+        chat_id: data.message.chat.id,
+        text: `Chat id: ${data.message.chat.id}.`,
       });
     } else if (data.message.text == '/help') {
       await telegram('sendMessage', {
