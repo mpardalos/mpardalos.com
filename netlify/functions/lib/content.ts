@@ -5,7 +5,6 @@ import { dbg, titleOfUrl } from "./utils";
 
 type ShortPost = {
   content: string,
-  title: string,
 }
 
 type Bookmark = {
@@ -29,7 +28,6 @@ export async function createShortPost(shortPost: ShortPost) {
   let content = ""
   content += "---\n"
   content += `date: ${now.toISOString()}\n`
-  content += `title: "${shortPost.title}"\n`
   content += "---\n"
   content += "\n"
   content += shortPost.content;

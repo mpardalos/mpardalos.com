@@ -233,7 +233,6 @@ async function handleCreate(req: MicropubRequest): Promise<string> {
   const props = req.properties;
   console.log(`props=${dbg(props)}`);
   if ("like-of" in props) {
-    console.log(`like-of`);
     return content.createLike({
       likeOf: props["like-of"][0],
       content: props["content"]?.[0],
@@ -245,10 +244,8 @@ async function handleCreate(req: MicropubRequest): Promise<string> {
       content: props["content"]?.[0],
       title: props["title"]?.[0],
     });
-  } else if (props.title && props.content) {
-    console.log(`title and content`);
+  } else if (props.content) {
     return content.createShortPost({
-      title: props.title[0],
       content: props.content[0],
     });
   }
