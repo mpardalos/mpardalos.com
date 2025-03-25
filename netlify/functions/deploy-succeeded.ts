@@ -1,9 +1,10 @@
 import { telegram } from './lib/telegram';
+import { dbg } from './lib/utils';
 
 const BOT_SECRET_TOKEN = process.env.BOT_SECRET_TOKEN;
 const NOTIFY_CHAT_ID = process.env.NOTIFY_CHAT_ID;
 
-export default async (req, context) => {
+export default async (req: Request, context) => {
   const me = await telegram('getMe');
   console.log(`getMe: ${JSON.stringify(me)}`);
   console.log('---')
@@ -35,8 +36,22 @@ export default async (req, context) => {
       chat_id: NOTIFY_CHAT_ID,
       text: `Deploy succeeded!`,
     });
+    const json = await req.json();
+    await telegram('sendMessage', {
+      chat_id: NOTIFY_CHAT_ID,
+      text: `
+        Deploy succeeded!
+        ${json.payload.title}
+        Commit: ${json.payload.commit_url}
+      `,
+    });
   } catch (err) {
     console.log(`Sending notification failed: ${err}`)
+    console.log(`Sending simple notification`)
+    await telegram('sendMessage', {
+      chat_id: NOTIFY_CHAT_ID,
+      text: "Deploy succeed"
+    })
   }
 
   return new Response();

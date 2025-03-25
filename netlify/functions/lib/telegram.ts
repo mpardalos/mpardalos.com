@@ -15,7 +15,7 @@ export function isCallbackQueryUpdate(update: Telegram.Update): update is Telegr
   return 'callback_query' in update;
 }
 
-export async function telegram(method, args) {
+export async function telegram(method, args?) {
   console.log(`Telegram request: ${method}(${JSON.stringify(args)})`)
   const response = args
     ? await fetch(`${BOT_API_URL}/${method}`, {
