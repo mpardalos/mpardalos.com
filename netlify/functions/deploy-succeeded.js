@@ -1,6 +1,7 @@
 import { telegram } from './lib/telegram';
 
 const BOT_SECRET_TOKEN = process.env.BOT_SECRET_TOKEN;
+const NOTIFY_CHAT_ID = process.env.NOTIFY_CHAT_ID;
 
 export default async (req, context) => {
   const me = await telegram('getMe');
@@ -27,6 +28,16 @@ export default async (req, context) => {
   const webhook_info_response = await telegram('getWebhookInfo');
   console.log(`webhook info: ${JSON.stringify(webhook_info_response)}`);
   console.log('---')
+
+  try {
+    console.log("Sending notification")
+    await telegram('sendMessage', {
+      chat_id: NOTIFY_CHAT_ID,
+      text: `Deploy succeeded!`,
+    });
+  } catch (err) {
+    console.log(`Sending notification failed: ${err}`)
+  }
 
   return new Response();
 }
