@@ -39,11 +39,8 @@ export default async (req: Request, context) => {
     const json = await req.json();
     await telegram('sendMessage', {
       chat_id: NOTIFY_CHAT_ID,
-      text: `
-        Deploy succeeded!
-        ${json.payload.title}
-        Commit: ${json.payload.commit_url}
-      `,
+      text: `Deploy succeeded!\n${json.payload.title} (<a href="${json.payload.commit_url}">Changelog</a>)`,
+      parse_mode: 'HTML',
     });
   } catch (err) {
     console.log(`Sending notification failed: ${err}`)
