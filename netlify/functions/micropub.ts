@@ -31,7 +31,7 @@ type Action = "create" | "update" | "delete" | "undelete";
 type MicropubRequest = {
   type: [string];
   action: Action;
-  properties: CommonProperties & (PostProperties | LikeProperties);
+  properties: CommonProperties & (PostProperties | LikeProperties | BookmarkProperties);
 };
 
 type AuthorizationScope = Action[];
@@ -231,19 +231,22 @@ async function handleCreate(req: MicropubRequest): Promise<string> {
   console.log(`CREATE ${dbg(req)}`);
 
   const props = req.properties;
+  console.log(`props=${dbg(props)}`);
   if ("like-of" in props) {
+    console.log(`like-of`);
     return content.createLike({
       likeOf: props["like-of"][0],
-      content: props["content"][0],
-      title: props["title"][0],
+      content: props["content"]?.[0],
+      title: props["title"]?.[0],
     });
   } else if ("bookmark-of" in props) {
     return content.createBookmark({
-      bookmarkOf: props["like-of"][0],
-      content: props["content"][0],
-      title: props["name"][0],
+      bookmarkOf: props["bookmark-of"][0],
+      content: props["content"]?.[0],
+      title: props["title"]?.[0],
     });
   } else if (props.title && props.content) {
+    console.log(`title and content`);
     return content.createShortPost({
       title: props.title[0],
       content: props.content[0],
