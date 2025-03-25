@@ -1,7 +1,7 @@
 // This module contains functions to perform the actual changes to the website
 
 import * as github from "./github";
-import { dbg } from "./utils";
+import { dbg, titleOfUrl } from "./utils";
 
 type ShortPost = {
   content: string,
@@ -51,6 +51,13 @@ export async function createBookmark(bookmark: Bookmark) {
   content += `bookmark_of: "${bookmark.bookmarkOf}"\n`
   if (bookmark.title) {
     content += `title: ${bookmark.title}\n`
+  } else {
+    try {
+      const title = await titleOfUrl(bookmark.bookmarkOf);
+      content += `title: "${title}"\n`
+    } catch (err) {
+      console.log(`Error getting url of ${bookmark.bookmarkOf}: ${dbg(err)}`)
+    }
   }
   content += "---\n"
   if (bookmark.content) {
@@ -75,7 +82,15 @@ export async function createLike(like: Like) {
   content += `like_of: "${like.likeOf}"\n`
   if (like.title) {
     content += `title: "${like.title}"\n`
+  } else {
+    try {
+      const title = await titleOfUrl(like.likeOf);
+      content += `title: "${title}"\n`
+    } catch (err) {
+      console.log(`Error getting url of ${like.likeOf}: ${dbg(err)}`)
+    }
   }
+
   content += "---\n"
   if (like.content) {
     content += "\n"

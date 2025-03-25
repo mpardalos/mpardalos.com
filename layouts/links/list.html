@@ -31,7 +31,7 @@
 				{{ if $hasTitle }}
 				{{ .Title }}
 				{{ else }}
-				{{ . }}
+				{{ .Params.like_of }}
 				{{ end }}
 			</a>
 			{{ with .Content }}
