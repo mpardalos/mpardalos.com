@@ -1,5 +1,4 @@
 import { telegram } from "./lib/telegram";
-import { dbg } from "./lib/utils";
 
 const NOTIFY_CHAT_ID = process.env.NOTIFY_CHAT_ID;
 
