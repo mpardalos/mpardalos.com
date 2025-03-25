@@ -1,3 +1,5 @@
+import { dbg } from "./utils";
+
 const DO_NOT_CREATE = process.env.DO_NOT_CREATE; // Useful for debugging
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 
@@ -23,5 +25,5 @@ export async function createFile(
             "content": base64_content
         })
     });
-    console.log(`GITHUB RESPONSE: ${github_response}`);
+    console.log(`GITHUB RESPONSE: ${dbg(github_response)}`);
 }
