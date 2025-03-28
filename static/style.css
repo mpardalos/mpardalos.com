@@ -147,6 +147,7 @@ section>h2 {
 .publication-list {
     margin: 0;
     padding-left: 1em;
+    li:not(:last-child) { margin-bottom: 10px; }
 }
 
 /** Image board **/
