@@ -82,8 +82,15 @@ section>h2 {
 .h-card {
     display: flex;
     gap: 10px;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
+
+    .p-note {
+        max-width: 400px;
+        text-justify: auto;
+        text-align: justify;
+    }
 }
 
 .h-card .u-photo {
@@ -116,6 +123,10 @@ section>h2 {
 .page-list {
     list-style: none;
     padding-left: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /** Bookmarks **/
