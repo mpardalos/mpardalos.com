@@ -44,11 +44,28 @@
 			</div>
 		</li>
 	</ul>
+	<hr width="33%"/>
+	<ul class="publication-list">
+		<li>
+			<b>Michalis Pardalos</b>, "Who checks the checkers? Steps towards
+			reliable equivalence checking", 2024 Programming Language Design and
+			Implementation, Student Research Competition
+			<div>
+				<a href="/publications/PLDI_24_Poster.pdf">Poster</a>
+			</div>
+		</li>
+		<li>
+			<b>Michalis Pardalos</b>, "Who checks the checkers? Steps towards
+			reliable equivalence checking", 2024 Programming Language Design and
+			Implementation, Student Research Competition
+			<div>
+				<a href="/publications/PLDI_24_Poster.pdf">Poster</a>
+			</div>
+		</li>
+	</ul>
 </section>
 <section>
 	<h2>Pages</h2>
-	<p>I don't quite keep a blog — This is a list of pages that may or may not get updated over time.</p>
-	<hr width="33%"/>
 	<!-- This is a ul, even though I've disabled bullets, so that it renders better in text-mode browsers (lynx) -->
 	<ul class="page-list">
 		<li>
@@ -58,7 +75,7 @@
 		</li>
 		<li>
 			<article>
-				🔧 <a href="/using">The tools I like to use</a>
+				🔧 <a href="/using">My tools</a>
 			</article>
 		</li>
 		<li>
@@ -71,26 +88,26 @@
 				🔖 <a href="/links">Links</a>
 			</article>
 		</li>
-		<li>
-			<article>
-				📓 <a href="/social">Short posts</a>
-			</article>
-		</li>
-		<hr width="33%"/>
-		{{ range (.Site.GetPage "/posts").Pages }}
-		<li>
-			<article class="page">
-				{{ if (eq .Type "Game") }}
-				👾
-				{{ else if (eq .Type "Movie") }}
-				🎥
-				{{ else }}
-				📰
-				{{ end }}
-				<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-			</article>
-		</li>
-		{{ end }}
+		<!-- <li>
+			 <article>
+			 📓 <a href="/social">Short posts</a>
+			 </article>
+			 </li> -->
+		<!-- <hr width="33%"/>
+			 {{ range (.Site.GetPage "/posts").Pages }}
+			 <li>
+			 <article class="page">
+			 {{ if (eq .Type "Game") }}
+			 👾
+			 {{ else if (eq .Type "Movie") }}
+			 🎥
+			 {{ else }}
+			 📰
+			 {{ end }}
+			 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+			 </article>
+			 </li>
+			 {{ end }} -->
 	</ul>
 </section>
 {{ end }}
